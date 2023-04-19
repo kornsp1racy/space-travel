@@ -30,6 +30,9 @@ class Note
     #[ORM\JoinColumn(nullable: false)]
     private ?User $fk_user = null;
 
+    #[ORM\Column]
+    private ?int $likes = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +94,18 @@ class Note
     public function setFkUser(?User $fk_user): self
     {
         $this->fk_user = $fk_user;
+
+        return $this;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(int $likes): self
+    {
+        $this->likes = $likes;
 
         return $this;
     }

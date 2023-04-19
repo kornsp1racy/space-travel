@@ -36,6 +36,9 @@ class Trip
     #[ORM\ManyToMany(targetEntity: Item::class)]
     private Collection $trip_item;
 
+    #[ORM\Column(length: 255)]
+    private ?string $award = null;
+
     public function __construct()
     {
         $this->trip_item = new ArrayCollection();
@@ -138,6 +141,18 @@ class Trip
     public function removeTripItem(Item $tripItem): self
     {
         $this->trip_item->removeElement($tripItem);
+
+        return $this;
+    }
+
+    public function getAward(): ?string
+    {
+        return $this->award;
+    }
+
+    public function setAward(string $award): self
+    {
+        $this->award = $award;
 
         return $this;
     }
