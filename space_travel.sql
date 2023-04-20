@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2023 at 04:08 PM
+-- Generation Time: Apr 20, 2023 at 04:48 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -43,7 +43,9 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230419100254', '2023-04-19 10:03:04', 496),
 ('DoctrineMigrations\\Version20230419131155', '2023-04-19 13:12:31', 59),
 ('DoctrineMigrations\\Version20230419133930', '2023-04-19 13:39:34', 54),
-('DoctrineMigrations\\Version20230419134736', '2023-04-19 13:48:14', 13);
+('DoctrineMigrations\\Version20230419134736', '2023-04-19 13:48:14', 13),
+('DoctrineMigrations\\Version20230420095427', '2023-04-20 09:55:08', 119),
+('DoctrineMigrations\\Version20230420095730', '2023-04-20 09:57:35', 8);
 
 -- --------------------------------------------------------
 
@@ -55,6 +57,39 @@ CREATE TABLE `item` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`id`, `name`) VALUES
+(1, 'Insulated Clothes'),
+(2, 'Helmet'),
+(3, 'Sunglasses'),
+(4, 'Hiking Boots'),
+(5, 'Camera'),
+(6, 'Keyboard'),
+(7, 'Solar Charger'),
+(8, 'Swiss Army Laser Cutter'),
+(9, 'Jetpack'),
+(10, 'Insulated Tent'),
+(11, 'Inflatable Spaceship'),
+(12, 'Xenomorph Repellent'),
+(13, 'Plasma Gun'),
+(14, 'Alien language translator'),
+(15, 'Hover Hammock'),
+(16, 'Space Suit Repair Kit'),
+(17, 'Flashlight'),
+(18, 'Satellite Phone'),
+(19, 'Energy Bars'),
+(20, 'First Aid Kit'),
+(21, 'GPS Tracker'),
+(22, 'Stormproof Jacket'),
+(23, 'Insulated Scuba Gear'),
+(24, 'Surfboard'),
+(25, 'Spikes'),
+(26, 'Pickaxe'),
+(27, 'Telescope');
 
 -- --------------------------------------------------------
 
@@ -107,6 +142,19 @@ CREATE TABLE `mandatory_item_trip` (
   `fk_item_id` int(11) NOT NULL,
   `fk_trip_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `mandatory_item_trip`
+--
+
+INSERT INTO `mandatory_item_trip` (`id`, `fk_item_id`, `fk_trip_id`) VALUES
+(1, 1, 6),
+(2, 2, 6),
+(3, 4, 6),
+(4, 1, 8),
+(5, 22, 8),
+(6, 1, 9),
+(7, 25, 9);
 
 -- --------------------------------------------------------
 
@@ -192,6 +240,19 @@ CREATE TABLE `trip_item` (
   `item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `trip_item`
+--
+
+INSERT INTO `trip_item` (`trip_id`, `item_id`) VALUES
+(6, 5),
+(6, 6),
+(6, 27),
+(8, 5),
+(8, 23),
+(8, 24),
+(9, 15);
+
 -- --------------------------------------------------------
 
 --
@@ -201,23 +262,25 @@ CREATE TABLE `trip_item` (
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `first_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `passwort` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `passport` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `last_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `passport` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `address`, `passwort`, `passport`, `phone`, `status`, `image`) VALUES
-(1, 'Adrian', 'Min', 'admin@email.com', 'Straße 3, 10015 Berlin', '123123', 'pass.jpg', '1234556', 'Admin', 'pic.png'),
-(2, 'Max', 'Mustermann', 'mustermann@email.com', 'Allee 15, 89005 München', '123123', 'pp.jpg', '2345435', 'User', 'profil.jpeg');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `address`, `password`, `passport`, `phone`, `image`, `roles`) VALUES
+(1, 'Adrian', 'Min', 'admin@email.com', 'Straße 3, 10015 Berlin', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'pass.jpg', '1234556', 'pic.png', '[\"ROLE_ADMIN\"]'),
+(2, 'Max', 'Mustermann', 'mustermann@email.com', 'Allee 15, 89005 München', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'pp.jpg', '2345435', 'profil.jpeg', '[\"ROLE_USER\"]'),
+(3, 'the', 'dude', 'some@dude.com', 'wtf 123', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'pp.jpg', '123123123', 'profile.jpg', '[]'),
+(4, 'Ad', 'Min', 'admin@gmail.com', 'dsfjjf', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'dsfds.jpg', '324345435', '4wrdfg.jpg', '[\"ROLE_ADMIN\"]');
 
 -- --------------------------------------------------------
 
@@ -305,7 +368,8 @@ ALTER TABLE `trip_item`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`);
 
 --
 -- Indexes for table `user_reward`
@@ -322,7 +386,7 @@ ALTER TABLE `user_reward`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `itinerary`
@@ -334,7 +398,7 @@ ALTER TABLE `itinerary`
 -- AUTO_INCREMENT for table `mandatory_item_trip`
 --
 ALTER TABLE `mandatory_item_trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `messenger_messages`
@@ -358,7 +422,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_reward`
