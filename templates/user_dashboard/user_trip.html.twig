@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserDashboardController!{% endblock %}
+
+{% block body %}
+<h1>{{ trip.destination }}</h1>
+
+    <a href="/user/trips/{{trip.id}}/packing_list">Packing List</a>
+
+    <a href="/user">Back</a>
+    
+{% endblock %}

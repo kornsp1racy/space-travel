@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -46,6 +49,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[ORM\ManyToMany(targetEntity: Trip::class, inversedBy: 'user')]
+    #[JoinTable(name: 'trip_user')]
+    private Collection $trip;
+
+
+    public function __construct()
+    {
+        $this->trip = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -177,18 +190,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // public function getStatus(): ?string
-    // {
-    //     return $this->status;
-    // }
-
-    // public function setStatus(string $status): self
-    // {
-    //     $this->status = $status;
-
-    //     return $this;
-    // }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -200,4 +201,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getTrip(): Collection
+    {
+        return $this->trip;
+    }
+
+    public function addTrip(Trip $trip): self
+    {
+        if (!$this->trip->contains($trip)) {
+            $this->trip->add($trip);
+        }
+
+        return $this;
+    }
+
+    public function removeTrip(User $trip): self
+    {
+        $this->trip->removeElement($trip);
+
+        return $this;
+    }
+
 }

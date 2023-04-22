@@ -39,9 +39,13 @@ class Trip
     #[ORM\Column(length: 255)]
     private ?string $award = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'trip')]
+    private Collection $user;
+
     public function __construct()
     {
         $this->trip_item = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,6 +157,30 @@ class Trip
     public function setAward(string $award): self
     {
         $this->award = $award;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->user->contains($user)) {
+            $this->user->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        $this->user->removeElement($user);
 
         return $this;
     }

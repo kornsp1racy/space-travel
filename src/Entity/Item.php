@@ -21,6 +21,7 @@ class Item
     #[ORM\ManyToMany(targetEntity: User::class)]
     private Collection $user_item;
 
+
     public function __construct()
     {
         $this->user_item = new ArrayCollection();
@@ -66,4 +67,5 @@ class Item
 
         return $this;
     }
+
 }

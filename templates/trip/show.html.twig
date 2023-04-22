@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TripController!{% endblock %}
+
+{% block body %}
+
+<h1>{{ trip.name }}</h1>
+<p>Destination: {{ trip.destination }}</p>
+<p>Duration: {{ trip.duration }}</p>
+<p>Characteristics: {{ trip.characteristics }}</p>
+<p><img style="width: 200px;" src="{{ trip.image }}" alt="{{ trip.destination }}"></p>
+<p>Host: {{ trip.host }}</p>
+<p>Award: {{ trip.award }}</p>
+
+<p>Interested? <a href="/trips/{{ trip.id }}/select">Select</a></p>
+
+<a href="/">Back</a>
+
+{% endblock %}
