@@ -3,6 +3,7 @@
 {% block title %}Hello UserDashboardController!{% endblock %}
 
 {% block body %}
+{% set trip = trip.trip %}
 <h1>{{ trip.destination }}</h1>
 
     <a href="/user/trips/{{trip.id}}/packing_list">Packing List</a>

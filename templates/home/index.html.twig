@@ -7,11 +7,13 @@
 
     {% if app.user %}
 
-        {% if app.user.roles[0] == "ROLE_ADMIN" %}
+        {# {% if app.user.roles[0] == "ROLE_ADMIN" %}
             <p><a href="/admin">Admin Dashboard</a></p>
         {% else %}
             <p><a href="/user">User Dashboard</a></p>
-        {% endif %}
+        {% endif %} #}
+
+        <p><a href="/dashboard">Dashboard</a></p>
 
 
         <a href="/logout">Logout</a>

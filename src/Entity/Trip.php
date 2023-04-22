@@ -33,19 +33,23 @@ class Trip
     #[ORM\Column(length: 100)]
     private ?string $host = null;
 
-    #[ORM\ManyToMany(targetEntity: Item::class)]
-    private Collection $trip_item;
+    // #[ORM\ManyToMany(targetEntity: Item::class)]
+    // private Collection $trip_item;
 
     #[ORM\Column(length: 255)]
     private ?string $award = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'trip')]
-    private Collection $user;
+    // #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'trip')]
+    // private Collection $user;
+
+    #[ORM\OneToMany(mappedBy: 'trip', targetEntity: SelectedTrip::class, cascade: ['persist'])]
+    private Collection $selectedTrips;
 
     public function __construct()
     {
-        $this->trip_item = new ArrayCollection();
-        $this->user = new ArrayCollection();
+        // $this->trip_item = new ArrayCollection();
+        // $this->user = new ArrayCollection();
+        $this->selectedTrips = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,29 +129,29 @@ class Trip
         return $this;
     }
 
-    /**
-     * @return Collection<int, Item>
-     */
-    public function getTripItem(): Collection
-    {
-        return $this->trip_item;
-    }
+    // /**
+    //  * @return Collection<int, Item>
+    //  */
+    // public function getTripItem(): Collection
+    // {
+    //     return $this->trip_item;
+    // }
 
-    public function addTripItem(Item $tripItem): self
-    {
-        if (!$this->trip_item->contains($tripItem)) {
-            $this->trip_item->add($tripItem);
-        }
+    // public function addTripItem(Item $tripItem): self
+    // {
+    //     if (!$this->trip_item->contains($tripItem)) {
+    //         $this->trip_item->add($tripItem);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeTripItem(Item $tripItem): self
-    {
-        $this->trip_item->removeElement($tripItem);
+    // public function removeTripItem(Item $tripItem): self
+    // {
+    //     $this->trip_item->removeElement($tripItem);
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getAward(): ?string
     {
@@ -161,26 +165,56 @@ class Trip
         return $this;
     }
 
+    // /**
+    //  * @return Collection<int, User>
+    //  */
+    // public function getUser(): Collection
+    // {
+    //     return $this->user;
+    // }
+
+    // public function addUser(User $user): self
+    // {
+    //     if (!$this->user->contains($user)) {
+    //         $this->user->add($user);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeUser(User $user): self
+    // {
+    //     $this->user->removeElement($user);
+
+    //     return $this;
+    // }
+
     /**
-     * @return Collection<int, User>
+     * @return Collection<int, SelectedTrip>
      */
-    public function getUser(): Collection
+    public function getSelectedTrips(): Collection
     {
-        return $this->user;
+        return $this->selectedTrips;
     }
 
-    public function addUser(User $user): self
+    public function addSelectedTrip(SelectedTrip $selectedTrip): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user->add($user);
+        if (!$this->selectedTrips->contains($selectedTrip)) {
+            $this->selectedTrips->add($selectedTrip);
+            $selectedTrip->setTrip($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removeSelectedTrip(SelectedTrip $selectedTrip): self
     {
-        $this->user->removeElement($user);
+        if ($this->selectedTrips->removeElement($selectedTrip)) {
+            // set the owning side to null (unless already changed)
+            if ($selectedTrip->getTrip() === $this) {
+                $selectedTrip->setTrip(null);
+            }
+        }
 
         return $this;
     }

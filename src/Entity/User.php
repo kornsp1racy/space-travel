@@ -50,14 +50,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\ManyToMany(targetEntity: Trip::class, inversedBy: 'user')]
-    #[JoinTable(name: 'trip_user')]
-    private Collection $trip;
+    // #[ORM\ManyToMany(targetEntity: Trip::class, inversedBy: 'user')]
+    // #[JoinTable(name: 'trip_user')]
+    // private Collection $trip;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SelectedTrip::class, cascade: ['persist'])]
+    private Collection $selectedTrips;
 
 
     public function __construct()
     {
-        $this->trip = new ArrayCollection();
+        // $this->trip = new ArrayCollection();
+        $this->selectedTrips = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -202,26 +206,56 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // /**
+    //  * @return Collection<int, Trip>
+    //  */
+    // public function getTrip(): Collection
+    // {
+    //     return $this->trip;
+    // }
+
+    // public function addTrip(Trip $trip): self
+    // {
+    //     if (!$this->trip->contains($trip)) {
+    //         $this->trip->add($trip);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeTrip(User $trip): self
+    // {
+    //     $this->trip->removeElement($trip);
+
+    //     return $this;
+    // }
+
     /**
-     * @return Collection<int, Trip>
+     * @return Collection<int, SelectedTrip>
      */
-    public function getTrip(): Collection
+    public function getSelectedTrips(): Collection
     {
-        return $this->trip;
+        return $this->selectedTrips;
     }
 
-    public function addTrip(Trip $trip): self
+    public function addSelectedTrip(SelectedTrip $selectedTrip): self
     {
-        if (!$this->trip->contains($trip)) {
-            $this->trip->add($trip);
+        if (!$this->selectedTrips->contains($selectedTrip)) {
+            $this->selectedTrips->add($selectedTrip);
+            $selectedTrip->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeTrip(User $trip): self
+    public function removeSelectedTrip(SelectedTrip $selectedTrip): self
     {
-        $this->trip->removeElement($trip);
+        if ($this->selectedTrips->removeElement($selectedTrip)) {
+            // set the owning side to null (unless already changed)
+            if ($selectedTrip->getUser() === $this) {
+                $selectedTrip->setUser(null);
+            }
+        }
 
         return $this;
     }

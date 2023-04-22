@@ -4,10 +4,11 @@
 
 {% block body %}
 <h1>User Dashboard</h1>
-    <div style="display: flex; flex-wrap: wrap; gap: 1em; margin-top: 2rem;">
+    {# <div style="display: flex; flex-wrap: wrap; gap: 1em; margin-top: 2rem;">
 
     {% set trip_id = 0 %}
     {% for trip in trips %}
+        {% set trip = trip.trip %}
         <div style="border: 2px solid black; width: 150px; text-align: center;">
             <h3>{{ trip.name }}</h3>
             <p>{{ trip.destination }}</p>
@@ -15,7 +16,13 @@
         </div>
         {% set trip_id = trip_id + 1 %}
     {% endfor %}
-    </div>
+    </div> #}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <p><a href="/users">Manage Users</a></p>
+    {% endif %}
+    
+    <p><a href="/trips">Your Trips</a></p>
 
     <a href="/">Home</a>
     <a href="/logout">Logout</a>

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\SelectedTrip;
 use App\Entity\Trip;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,6 +12,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TripController extends AbstractController
 {
+
+    #[Route('/trips', name: 'app_trips')]
+    public function index(Security $security): Response
+    {
+
+        $user = $security->getUser();
+        $trips = $user->getSelectedTrips();
+
+        return $this->render('trip/index.html.twig', [
+            'trips' => $trips
+        ]);
+    }
+
     #[Route('/trips/{id}', name: 'app_trip_show')]
     public function show($id, EntityManagerInterface $em): Response
     {
@@ -25,13 +39,17 @@ class TripController extends AbstractController
     #[Route('/trips/{id}/select', name: 'app_trip_select')]
     public function select($id, EntityManagerInterface $em, Security $security): Response
     {
+        
 
         $trip = $em->getRepository(Trip::class)->find($id);
         $user = $security->getUser();
-        
-        $user->addTrip($trip);
-        $em->persist($user);
 
+        $selectedTrip = new SelectedTrip();
+        $selectedTrip->setUser($user);
+        $selectedTrip->setTrip($trip);
+        
+        $user->addSelectedTrip($selectedTrip);
+        $em->persist($user);
         $em->flush();
 
 
