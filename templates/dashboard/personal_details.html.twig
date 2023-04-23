@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserDashboardController!{% endblock %}
+
+{% block body %}
+<h1>Dashboard</h1>
+    
+{{ form_start(form) }}
+    {{ form_row(form.email) }}    
+    {{ form_row(form.first_name) }}    
+    {{ form_row(form.last_name) }}    
+    {{ form_row(form.address) }}    
+    {{ form_row(form.passport) }}    
+    {{ form_row(form.phone) }}    
+    {{ form_row(form.image) }}    
+    {{ form_row(form._token) }}   
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form, { 'render_rest': false}) }}
+<a href="{{ path('app_dashboard') }}">back to list</a>
+{% endblock %}
+

@@ -6,8 +6,11 @@
 {% set trip = trip.trip %}
 <h1>{{ trip.destination }}</h1>
 
-    <a href="/user/trips/{{trip.id}}/packing_list">Packing List</a>
+    <a href="/dashboard/trips/{{ id }}/packing_list">Packing List</a>
 
-    <a href="/user">Back</a>
+
+    <p><a href="/dashboard/trips/{{ id }}/remove">Remove Trip</a></p>
+
+    <p><a href="/dashboard/trips">Back</a></p>
     
 {% endblock %}

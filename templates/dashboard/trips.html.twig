@@ -12,7 +12,7 @@
         <div style="border: 2px solid black; width: 150px; text-align: center;">
             <h3>{{ trip.name }}</h3>
             <p>{{ trip.destination }}</p>
-            <p><a href="/trips/{{ trip_id }}">Manage</a></p>
+            <p><a href="/dashboard/trips/{{ trip_id }}">Manage</a></p>
         </div>
         {% set trip_id = trip_id + 1 %}
     {% endfor %}

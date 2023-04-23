@@ -54,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // #[JoinTable(name: 'trip_user')]
     // private Collection $trip;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SelectedTrip::class, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SelectedTrip::class, cascade: ['persist', 'remove'])]
     private Collection $selectedTrips;
 
 

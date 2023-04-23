@@ -9,20 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
 
 class TripController extends AbstractController
 {
 
     #[Route('/trips', name: 'app_trips')]
-    public function index(Security $security): Response
-    {
-
-        $user = $security->getUser();
-        $trips = $user->getSelectedTrips();
-
-        return $this->render('trip/index.html.twig', [
-            'trips' => $trips
-        ]);
+    public function index() {
+        return $this->redirectToRoute('app_home');
     }
 
     #[Route('/trips/{id}', name: 'app_trip_show')]
@@ -42,11 +36,23 @@ class TripController extends AbstractController
         
 
         $trip = $em->getRepository(Trip::class)->find($id);
+        /**
+         * @var User
+         */
         $user = $security->getUser();
 
-        $selectedTrip = new SelectedTrip();
-        $selectedTrip->setUser($user);
-        $selectedTrip->setTrip($trip);
+        $selectedTrip = $em->getRepository(SelectedTrip::class)->findOneBy([
+            'user' => $user,
+            'trip' => $trip,
+        ]);
+    
+        if (!$selectedTrip) {
+
+            $selectedTrip = new SelectedTrip();
+            $selectedTrip->setUser($user);
+            $selectedTrip->setTrip($trip);
+        }
+
         
         $user->addSelectedTrip($selectedTrip);
         $em->persist($user);
