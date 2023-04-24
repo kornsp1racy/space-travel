@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SelectedTripRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SelectedTripRepository::class)]
@@ -20,6 +22,14 @@ class SelectedTrip
     #[ORM\ManyToOne(inversedBy: 'selectedTrips')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Trip $trip = null;
+
+    #[ORM\OneToMany(mappedBy: 'selectedTrip', targetEntity: PackingList::class)]
+    private Collection $packingLists;
+
+    public function __construct()
+    {
+        $this->packingLists = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -46,6 +56,36 @@ class SelectedTrip
     public function setTrip(?Trip $trip): self
     {
         $this->trip = $trip;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PackingList>
+     */
+    public function getPackingLists(): Collection
+    {
+        return $this->packingLists;
+    }
+
+    public function addPackingList(PackingList $packingList): self
+    {
+        if (!$this->packingLists->contains($packingList)) {
+            $this->packingLists->add($packingList);
+            $packingList->setSelectedTrip($this);
+        }
+
+        return $this;
+    }
+
+    public function removePackingList(PackingList $packingList): self
+    {
+        if ($this->packingLists->removeElement($packingList)) {
+            // set the owning side to null (unless already changed)
+            if ($packingList->getSelectedTrip() === $this) {
+                $packingList->setSelectedTrip(null);
+            }
+        }
 
         return $this;
     }

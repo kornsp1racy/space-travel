@@ -18,13 +18,14 @@ class Item
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class)]
-    private Collection $user_item;
+
+    #[ORM\OneToMany(mappedBy: 'item', targetEntity: PackingList::class)]
+    private Collection $packingLists;
 
 
     public function __construct()
     {
-        $this->user_item = new ArrayCollection();
+        $this->packingLists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -44,26 +45,34 @@ class Item
         return $this;
     }
 
+ 
+
     /**
-     * @return Collection<int, User>
+     * @return Collection<int, PackingList>
      */
-    public function getUserItem(): Collection
+    public function getPackingLists(): Collection
     {
-        return $this->user_item;
+        return $this->packingLists;
     }
 
-    public function addUserItem(User $userItem): self
+    public function addPackingList(PackingList $packingList): self
     {
-        if (!$this->user_item->contains($userItem)) {
-            $this->user_item->add($userItem);
+        if (!$this->packingLists->contains($packingList)) {
+            $this->packingLists->add($packingList);
+            $packingList->setItem($this);
         }
 
         return $this;
     }
 
-    public function removeUserItem(User $userItem): self
+    public function removePackingList(PackingList $packingList): self
     {
-        $this->user_item->removeElement($userItem);
+        if ($this->packingLists->removeElement($packingList)) {
+            // set the owning side to null (unless already changed)
+            if ($packingList->getItem() === $this) {
+                $packingList->setItem(null);
+            }
+        }
 
         return $this;
     }

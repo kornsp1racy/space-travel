@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserDashboardController!{% endblock %}
+
+{% block body %}
+{# {% set trip = trip.trip %} #}
+<h1>{{ selectedtrip.trip.destination }} Packing List</h1>
+<a href="/dashboard/trips/{{ id }}">Back</a>
+    
+<form action="{{ path('app_dashboard_trip_packing_list', {'id': id}) }}" method="post">
+
+
+  <select name="selectedItems[]" multiple>
+    {% for item in items %}
+      {% set suggested = false %}
+      {% for tripItem in selectedtrip.trip.tripItem %}
+        {% if tripItem.id == item.id %}
+          {% set suggested = true %}
+        {% endif %}
+      {% endfor %}
+      <option value="{{ item.id }}" {% if suggested %}selected{% endif %}>{{ item.name }}</option>
+    {% endfor %}
+</select>
+
+
+
+  <input type="submit" value="Save">
+</form>
+
+
+{% endblock %}

@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Item;
 use App\Entity\Trip;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -94,16 +96,20 @@ class DashboardController extends AbstractController
 
     
     #[Route('/dashboard/trips/{id}/packing_list', name: 'app_dashboard_trip_packing_list')]
-    public function packingList($id, Security $security): Response
+    public function packingList($id, Security $security, ManagerRegistry $doctrine): Response
     {
         /**
          * @var User
          */
         $user = $security->getUser();
-        $trip = $user->getTrip();
+        $trip = $user->getSelectedTrips()[$id];
 
-        return $this->render('dashboard/dashboard_packing.html.twig', [
-            $trip
+        $items = $doctrine->getRepository(Item::class)->findAll();
+
+        return $this->render('dashboard/trip_packing.html.twig', [
+            'selectedtrip' => $trip,
+            'id' => $id,
+            'items' => $items
         ]);
     }
 
