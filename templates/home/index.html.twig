@@ -1,38 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Astro Tours{% endblock %}
+{% block title %}Astro Tours
+{% endblock %}
 
 {% block body %}
-    {% if app.user %}
+{% if app.user %}
 
-        {# {% if app.user.roles[0] == "ROLE_ADMIN" %}
-            <p><a href="/admin">Admin Dashboard</a></p>
-        {% else %}
-            <p><a href="/user">User Dashboard</a></p>
-        {% endif %} #}
+	{# {% if app.user.roles[0] == "ROLE_ADMIN" %}
+							            <p><a href="/admin">Admin Dashboard</a></p>
+							        {% else %}
+							            <p><a href="/user">User Dashboard</a></p>
+							        {% endif %} #}
 
-        <p><a href="/dashboard">Dashboard</a></p>
+	<p>
+		<a href="/dashboard">Dashboard</a>
+	</p>
 
 
-        <a href="/logout">Logout</a>
+	<a href="/logout">Logout</a>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 1em; margin-top: 2rem;">
+	<div style="display: flex; flex-wrap: wrap; gap: 1em; margin-top: 2rem;">
 
-            {% for trip in trips %}
-                <div style="border: 2px solid black; width: 150px; text-align: center;">
-                    <h3>{{ trip.name }}</h3>
-                    <p>{{ trip.destination }}</p>
-                    <p><a href="/trips/{{trip.id}}">Details</a></p>
-                </div>
-            {% endfor %}
-        </div>
+		{% for trip in trips %}
+			<div style="border: 2px solid black; width: 150px; text-align: center;">
+				<h3>{{ trip.name }}</h3>
+				<p>{{ trip.destination }}</p>
+				<p>
+					<a href="/trips/{{trip.id}}">Details</a>
+				</p>
+			</div>
+		{% endfor %}
+	</div>
 
-    {% else %}
+{% else %}
 	<body
 		class="landing-body" onload="document.body.style.opacity='1'">
 		<!-- preloader -->
 		<div class="preloader">
-			<img src="preloader.gif" alt="preloader">
+			<img src="{{asset('movies/preloader.gif')}}" alt="preloader">
 		</div>
 		<!-- Navbar -->
 		<nav>
@@ -46,7 +51,9 @@
 			<video class="video-container" muted autoplay loop>
 				<source src="{{asset('movies/AdobeStock_461074863.mov')}}" type="video/mp4">
 			</video>
-			<h1 class="landing-h1" id="animateSlider">Welcome.</h1>
+			<h1 class="landing-h1 w-25 text-center" id="animateSlider">Welcome to
+				<br>
+				Astro Tours</h1>
 			<!-- video switch -->
 			<button class="switch-btn">
 				<span>
@@ -63,114 +70,42 @@
 
 <!-- Trips -->
 <div id="trips-section">
-	<h2 class="text-center divider line glow">What we offer</h2>
-	<p class="text-center w-50 mx-auto">
-		Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium
-				consequuntur aliquam vel. Corporis cum laborum quas deleniti eveniet
-                repellat est quae non explicabo.
+	<h1 class="text-center divider line glow">What we offer</h1>
+	<p class="text-center w-50 mx-auto my-5">
+		Welcome to our space travel agency, where we make your wildest space travel dreams a reality. We offer a variety of exciting and unforgettable experiences, 
+				including suborbital flights, lunar excursions, and even interstellar voyages. Join us on the ultimate adventure and explore the final frontier with us.
 	</p>
-	<div class="row justify-content-around m-3">
-		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12" style="width: 18rem">
-			<img src="..." class="card-img-top" alt="..."/>
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">
-					Some quick example text to build on the card title and make up the
-					bulk of the card's content.
-				</p>
-				<a href="#" class="btn btn-danger btn-sm btn-blue">Details</a>
+	<div class="row justify-content-around my-5">
+		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12 text-center" style="width: 18rem;">
+			<img class="card-img-top" src="https://cdn.mos.cms.futurecdn.net/LeZ2ZicMsBz2MDs3JA2kJn.jpg" alt="Card image cap">
+			<div class="card-body mt-3">
+				<h5 class="card-title">Moon</h5>
+				<p class="card-text">Our most booked Trip to the Moon takes about one month. Look forward to travel with Oprah Winfrey on our BASIC Trip.</p>
 			</div>
 		</div>
-		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12" style="width: 18rem">
-			<img src="..." class="card-img-top" alt="..."/>
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">
-					Some quick example text to build on the card title and make up the
-										bulk of the card's content.
-				</p>
-				<a href="#" class="btn btn-primary">Details</a>
+		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12 text-center" style="width: 18rem;">
+			<img class="card-img-top" src="https://www.universetoday.com/wp-content/uploads/2008/10/Venus.jpg" alt="Card image cap">
+			<div class="card-body mt-3">
+				<h5 class="card-title">Venus</h5>
+				<p class="card-text">Come join us on our trip to Venus and your special fellow traveler: Donald Trump. Explore the Venus and sleep in modular habitat.</p>
 			</div>
 		</div>
-		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12" style="width: 18rem">
-			<img src="..." class="card-img-top" alt="..."/>
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">
-					Some quick example text to build on the card title and make up the
-										bulk of the card's content.
-				</p>
-				<a href="#" class="btn btn-primary">Details</a>
+		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12 text-center" style="width: 18rem;">
+			<img class="card-img-top" src="https://www.universetoday.com/wp-content/uploads/2014/10/True-colour_image_of_Mars_seen_by_OSIRIS.jpg" alt="Card image cap">
+			<div class="card-body mt-3">
+				<h5 class="card-title">Mars</h5>
+				<p class="card-text">Ready for an out-of-this-world adventure? Join Elon Musk on a journey to Mars and experience the ultimate frontier of exploration.</p>
 			</div>
 		</div>
 	</div>
-</div>
-
-<!-- Register -->
-<div id="register-section">
-	<h2 class="text-center divider line glow">Wanna join our next trip?</h2>
 	<div class="text-center mx-auto">
-		<a class="btn btn-light btn-lg btn-orange fw-bolder m-3" href="/register">Register</a>
-	</div>
-</div>
-
-<!-- Users Journal -->
-<div id="journal-section">
-	<h2 class="text-center divider line glow">What our Clients experienced</h2>
-	<p class="text-center w-50 mx-auto">
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem amet
-				repudiandae consectetur excepturi harum omnis accusantium voluptatem. A,
-				unde ratione?
-	</p>
-	<div class="row justify-content-around">
-		<div class="card" style="width: 25rem">
-			<img src="..." class="card-img-top" alt="..."/>
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">
-					Some quick example text to build on the card title and make up the
-										bulk of the card's content.
-				</p>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">An item</li>
-				<li class="list-group-item">A second item</li>
-				<li class="list-group-item">A third item</li>
-			</ul>
-			<div class="card-body">
-				<a href="#" class="card-link text-decoration-none mx-5">15</a>
-				<a href="#" class="card-link btn btn-dark me-auto">
-					<i class="bi bi-hand-thumbs-up-fill"></i>
-					Like</a>
-			</div>
-		</div>
-		<div class="card" style="width: 25rem">
-			<img src="..." class="card-img-top" alt="..."/>
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">
-					Some quick example text to build on the card title and make up the
-										bulk of the card's content.
-				</p>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">An item</li>
-				<li class="list-group-item">A second item</li>
-				<li class="list-group-item">A third item</li>
-			</ul>
-			<div class="card-body">
-				<a href="#" class="card-link text-decoration-none mx-5">15</a>
-				<a href="#" class="card-link btn btn-dark me-auto">
-					<i class="bi bi-hand-thumbs-up-fill"></i>
-					Like</a>
-			</div>
-		</div>
+		<a class="btn btn-light btn-lg btn-orange fw-bolder mt-3" href="/register">Explore more</a>
 	</div>
 </div>
 
 <!-- Features -->
 <div id="features-section" class="">
-	<h2 class="text-center divider line glow">Why choose us?</h2>
+	<h1 class="text-center divider line glow">Why choose us?</h1>
 	<section id="features">
 		<div class="row">
 			<div class="feature-box col-lg-4 col-12">
@@ -193,11 +128,65 @@
 	</section>
 </div>
 
+<!-- Register -->
+<div id="register-section">
+	<h1 class="text-center divider line glow">Wanna join our next trip?</h1>
+	<p class="text-center w-50 mx-auto my-5">
+		Ready to blast off into space? Register now and join our exclusive list of space travelers. 
+				Experience the thrill of a lifetime and create unforgettable memories that are truly out of this world.</p>
+	<div class="text-center mx-auto">
+		<a class="btn btn-light btn-lg btn-orange fw-bolder mt-3" href="/register">Register</a>
+	</div>
+</div>
+
+<!-- Users Journal -->
+<div id="journal-section">
+	<h1 class="text-center divider line glow">What our Clients experienced</h1>
+	<p class="text-center w-50 mx-auto my-5">
+		Our clients have described their space travel experiences as nothing short of life-changing. 
+				From the awe-inspiring views of the Earth from above, to the weightlessness and serenity of space, 
+				our travelers have been left speechless. They return home with a newfound appreciation for our planet and a sense of wonder that stays with them forever.</p>
+	<div class="row justify-content-around">
+		<div class="card my-5" style="width: 30rem">
+			<img src="https://s.w-x.co/util/image/w/de-spacexdpa.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60" class="card-img-top" alt="..."/>
+			<div class="card-body">
+				<h5 class="card-title">Best Trip ever</h5>
+				<p class="card-text">
+After months of training and preparation, I can hardly believe that I am finally here on the Moon! The journey was long and uncomfortable, but it was all worth it to see the Earth rise over the horizon of this desolate landscape.
+The first thing I noticed when I stepped out of the spacecraft was the silence. There is no sound here, no wind, no rustling of leaves, just an eerie stillness that is both peaceful and unnerving.
+We spent the day exploring the landing site and setting up our equipment. Walking on the Moon is an incredible experience - the low gravity makes every step feel like you're bouncing and floating at the same time. It's going to take some getting used to, but I think I'm going to like it here.
+				</p>
+			</div>
+			<div class="d-flex justify-content-end">
+				<a class="btn text-decoration-none mx-1 text-black bg-light">44</a>
+				<a class="btn btn-secondary btn-orange"><i class="bi bi-heart-fill"></i></a>
+			</div>
+		</div>
+
+		<div class="card my-5" style="width: 30rem">
+			<img src="https://s.w-x.co/util/image/w/de-mond-astronaut-GettyImages-1353996620%20Kopie.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60" class="card-img-top" alt="..."/>
+			<div class="card-body">
+				<h5 class="card-title">Unbelievable experience</h5>
+				<p class="card-text">
+Today we conducted some scientific experiments and took some samples of the rocks and soil. It's incredible to think that these samples have been untouched for billions of years - they could hold clues to the origins of our solar system and the universe itself.
+We also had some time to just relax and take in the view. It's so peaceful here, without the noise and chaos of life on Earth. I feel like I could stay here forever, just gazing out at the landscape and pondering the mysteries of the universe.
+				</p>
+			</div>
+			<div class="d-flex justify-content-end">
+				<a class="btn text-decoration-none mx-1 text-black bg-light">15</a>
+				<a class="btn btn-secondary btn-orange"><i class="bi bi-heart-fill"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- Newsletter -->
 <div id="newsletter-section" class="">
-	<h2 class="text-center divider line glow">Sign up for our Newsletter</h2>
+	<h1 class="text-center divider line glow">Sign up for our Newsletter</h1>
+	<p class="text-center w-50 mx-auto my-5">
+		Don't miss out! Subscribe to our newsletter for exclusive content and exciting offers.</p>
 	<div>
-		<form class="w-50 mx-auto">
+		<form class="w-50 mx-auto my-3">
 			<div class="mb-3">
 				<input type="email" class="form-control mt-5 newsletterEmailInput" aria-describedby="emailHelp" placeholder="Email address"/>
 			</div>
@@ -208,14 +197,19 @@
 				</div>
 			</div>
 			<div class="text-center">
-				<button type="submit" class="btn btn-light btn-orange fw-bolder">Sign up</button>
+				<button type="submit" class="btn btn-light btn-orange fw-bolder m-3">Sign up</button>
 			</div>
 		</form>
 	</div>
 </div>
 <!-- Footer -->
-<footer class="p-5 text-center bg-danger mt-5">Footer</footer>
+<footer class="footer-landing text-center">
+	<a href="https://facebook.com"><i class="bi bi-facebook p-2 text-light"></i></a>
+	<a href="https://twitter.com"><i class="bi bi-twitter p-2 text-light"></i></a>
+	<a href="https://instagram.com"><i class="bi bi-instagram p-2 text-light"></i></a>
+	<a href="https://linkedin.com"><i class="bi bi-linkedin p-2 text-light "></i></a>
+	<a href="https://github.com"><i class="bi bi-github p-2 text-light"></i></a>
+	<p class="p-5 copyright">© 2023 Copyright Astro Tours</p>
+</footer>
 </body>
-{% endif %}
-
-{% endblock %}
+{% endif %}{% endblock %}
