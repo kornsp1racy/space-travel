@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2023 at 04:48 PM
+-- Generation Time: Apr 24, 2023 at 02:31 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -45,7 +45,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230419133930', '2023-04-19 13:39:34', 54),
 ('DoctrineMigrations\\Version20230419134736', '2023-04-19 13:48:14', 13),
 ('DoctrineMigrations\\Version20230420095427', '2023-04-20 09:55:08', 119),
-('DoctrineMigrations\\Version20230420095730', '2023-04-20 09:57:35', 8);
+('DoctrineMigrations\\Version20230420095730', '2023-04-20 09:57:35', 8),
+('DoctrineMigrations\\Version20230423222419', '2023-04-23 22:30:16', 154);
 
 -- --------------------------------------------------------
 
@@ -90,17 +91,6 @@ INSERT INTO `item` (`id`, `name`) VALUES
 (25, 'Spikes'),
 (26, 'Pickaxe'),
 (27, 'Telescope');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `item_user`
---
-
-CREATE TABLE `item_user` (
-  `item_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -196,6 +186,42 @@ INSERT INTO `note` (`id`, `fk_user_id`, `date`, `title`, `content`, `image`, `li
 (1, 2, '2023-04-12', 'Best trip ever', 'Day 1:\r\nAfter months of training and preparation, I can hardly believe that I am finally here on the Moon! The journey was long and uncomfortable, but it was all worth it to see the Earth rise over the horizon of this desolate landscape.\r\n\r\nThe first thing I noticed when I stepped out of the spacecraft was the silence. There is no sound here, no wind, no rustling of leaves, just an eerie stillness that is both peaceful and unnerving.\r\n\r\nWe spent the day exploring the landing site and setting up our equipment. Walking on the Moon is an incredible experience - the low gravity makes every step feel like you\'re bouncing and floating at the same time. It\'s going to take some getting used to, but I think I\'m going to like it here.', 'https://s.w-x.co/util/image/w/de-spacexdpa.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60', 25),
 (2, 2, '2023-04-13', 'Even better', 'Day 2:\r\nToday we ventured further away from the landing site and explored some of the craters and valleys nearby. The landscape is unlike anything I\'ve ever seen before - it\'s both barren and beautiful at the same time. The colors are muted, but there are subtle shades of grey, brown, and even purple in the rocks and dust.\r\n\r\nI couldn\'t help but feel a sense of awe as I looked up at the sky and saw the stars shining so brightly. There\'s no atmosphere to interfere with the view, so the stars are incredibly clear and vivid.\r\n\r\nWe also had some fun playing around in the low gravity - we tried jumping as high as we could and even had a few impromptu races. It\'s amazing how much you can do with just a little bit of effort here.', 'https://i.ds.at/iU_cPw/rs:fill:1600:0/plain/2022/04/13/mondimpakt.jpg', 44),
 (3, 2, '2023-04-14', 'out of ideas', 'Day 3:\r\nToday we conducted some scientific experiments and took some samples of the rocks and soil. It\'s incredible to think that these samples have been untouched for billions of years - they could hold clues to the origins of our solar system and the universe itself.\r\n\r\nWe also had some time to just relax and take in the view. It\'s so peaceful here, without the noise and chaos of life on Earth. I feel like I could stay here forever, just gazing out at the landscape and pondering the mysteries of the universe.', 'https://s.w-x.co/util/image/w/de-mond-astronaut-GettyImages-1353996620%20Kopie.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `packing_list`
+--
+
+CREATE TABLE `packing_list` (
+  `id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `selected_trip_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `selected_trip`
+--
+
+CREATE TABLE `selected_trip` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `trip_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `selected_trip`
+--
+
+INSERT INTO `selected_trip` (`id`, `user_id`, `trip_id`) VALUES
+(1, 3, 2),
+(2, NULL, 4),
+(3, NULL, 3),
+(4, 3, 6),
+(5, 3, 8),
+(6, 3, 9);
 
 -- --------------------------------------------------------
 
@@ -311,14 +337,6 @@ ALTER TABLE `item`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `item_user`
---
-ALTER TABLE `item_user`
-  ADD PRIMARY KEY (`item_id`,`user_id`),
-  ADD KEY `IDX_45A392B2126F525E` (`item_id`),
-  ADD KEY `IDX_45A392B2A76ED395` (`user_id`);
-
---
 -- Indexes for table `itinerary`
 --
 ALTER TABLE `itinerary`
@@ -349,6 +367,22 @@ ALTER TABLE `messenger_messages`
 ALTER TABLE `note`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_CFBDFA145741EEB9` (`fk_user_id`);
+
+--
+-- Indexes for table `packing_list`
+--
+ALTER TABLE `packing_list`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_F43062BD126F525E` (`item_id`),
+  ADD KEY `IDX_F43062BD4DF85090` (`selected_trip_id`);
+
+--
+-- Indexes for table `selected_trip`
+--
+ALTER TABLE `selected_trip`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_3FF5F823A76ED395` (`user_id`),
+  ADD KEY `IDX_3FF5F823A5BC2E0E` (`trip_id`);
 
 --
 -- Indexes for table `trip`
@@ -413,6 +447,18 @@ ALTER TABLE `note`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `packing_list`
+--
+ALTER TABLE `packing_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `selected_trip`
+--
+ALTER TABLE `selected_trip`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
@@ -435,13 +481,6 @@ ALTER TABLE `user_reward`
 --
 
 --
--- Constraints for table `item_user`
---
-ALTER TABLE `item_user`
-  ADD CONSTRAINT `FK_45A392B2126F525E` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_45A392B2A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `itinerary`
 --
 ALTER TABLE `itinerary`
@@ -460,6 +499,20 @@ ALTER TABLE `mandatory_item_trip`
 --
 ALTER TABLE `note`
   ADD CONSTRAINT `FK_CFBDFA145741EEB9` FOREIGN KEY (`fk_user_id`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `packing_list`
+--
+ALTER TABLE `packing_list`
+  ADD CONSTRAINT `FK_F43062BD126F525E` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`),
+  ADD CONSTRAINT `FK_F43062BD4DF85090` FOREIGN KEY (`selected_trip_id`) REFERENCES `selected_trip` (`id`);
+
+--
+-- Constraints for table `selected_trip`
+--
+ALTER TABLE `selected_trip`
+  ADD CONSTRAINT `FK_3FF5F823A5BC2E0E` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`),
+  ADD CONSTRAINT `FK_3FF5F823A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `trip_item`
