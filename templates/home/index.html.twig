@@ -1,10 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Astro Tours{% endblock %}
 
 {% block body %}
-    <h1>Hi {{ app.user.userIdentifier|default("Nobody") }}</h1>
-
     {% if app.user %}
 
         {# {% if app.user.roles[0] == "ROLE_ADMIN" %}
@@ -30,8 +28,194 @@
         </div>
 
     {% else %}
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-    {% endif %}
+	<body
+		class="landing-body" onload="document.body.style.opacity='1'">
+		<!-- preloader -->
+		<div class="preloader">
+			<img src="preloader.gif" alt="preloader">
+		</div>
+		<!-- Navbar -->
+		<nav>
+			<div class="nav-bar">
+				<a class="navbar-brand" href=""><img class="logo-landing" src="images/linkedin_banner_image_1.png" alt=""></a>
+				<a class="btn btn-outline-dark login-btn btn-blue fw-bolder" type="submit" href="/login">Login</a>
+			</div>
+		</nav>
+		<!-- Video -->
+		<header class="landing-header">
+			<video class="video-container" muted autoplay loop>
+				<source src="{{asset('movies/AdobeStock_461074863.mov')}}" type="video/mp4">
+			</video>
+			<h1 class="landing-h1" id="animateSlider">Welcome.</h1>
+			<!-- video switch -->
+			<button class="switch-btn">
+				<span>
+					play
+				</span>
+				<span>
+					pause
+				</span>
+				<span class="switch"></span>
+			</button>
+		</header>
+	</body>
+</header>
+
+<!-- Trips -->
+<div id="trips-section">
+	<h2 class="text-center divider line glow">What we offer</h2>
+	<p class="text-center w-50 mx-auto">
+		Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium
+				consequuntur aliquam vel. Corporis cum laborum quas deleniti eveniet
+                repellat est quae non explicabo.
+	</p>
+	<div class="row justify-content-around m-3">
+		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12" style="width: 18rem">
+			<img src="..." class="card-img-top" alt="..."/>
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">
+					Some quick example text to build on the card title and make up the
+					bulk of the card's content.
+				</p>
+				<a href="#" class="btn btn-danger btn-sm btn-blue">Details</a>
+			</div>
+		</div>
+		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12" style="width: 18rem">
+			<img src="..." class="card-img-top" alt="..."/>
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">
+					Some quick example text to build on the card title and make up the
+										bulk of the card's content.
+				</p>
+				<a href="#" class="btn btn-primary">Details</a>
+			</div>
+		</div>
+		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12" style="width: 18rem">
+			<img src="..." class="card-img-top" alt="..."/>
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">
+					Some quick example text to build on the card title and make up the
+										bulk of the card's content.
+				</p>
+				<a href="#" class="btn btn-primary">Details</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Register -->
+<div id="register-section">
+	<h2 class="text-center divider line glow">Wanna join our next trip?</h2>
+	<div class="text-center mx-auto">
+		<a class="btn btn-light btn-lg btn-orange fw-bolder m-3" href="/register">Register</a>
+	</div>
+</div>
+
+<!-- Users Journal -->
+<div id="journal-section">
+	<h2 class="text-center divider line glow">What our Clients experienced</h2>
+	<p class="text-center w-50 mx-auto">
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem amet
+				repudiandae consectetur excepturi harum omnis accusantium voluptatem. A,
+				unde ratione?
+	</p>
+	<div class="row justify-content-around">
+		<div class="card" style="width: 25rem">
+			<img src="..." class="card-img-top" alt="..."/>
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">
+					Some quick example text to build on the card title and make up the
+										bulk of the card's content.
+				</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">An item</li>
+				<li class="list-group-item">A second item</li>
+				<li class="list-group-item">A third item</li>
+			</ul>
+			<div class="card-body">
+				<a href="#" class="card-link text-decoration-none mx-5">15</a>
+				<a href="#" class="card-link btn btn-dark me-auto">
+					<i class="bi bi-hand-thumbs-up-fill"></i>
+					Like</a>
+			</div>
+		</div>
+		<div class="card" style="width: 25rem">
+			<img src="..." class="card-img-top" alt="..."/>
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">
+					Some quick example text to build on the card title and make up the
+										bulk of the card's content.
+				</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">An item</li>
+				<li class="list-group-item">A second item</li>
+				<li class="list-group-item">A third item</li>
+			</ul>
+			<div class="card-body">
+				<a href="#" class="card-link text-decoration-none mx-5">15</a>
+				<a href="#" class="card-link btn btn-dark me-auto">
+					<i class="bi bi-hand-thumbs-up-fill"></i>
+					Like</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Features -->
+<div id="features-section" class="">
+	<h2 class="text-center divider line glow">Why choose us?</h2>
+	<section id="features">
+		<div class="row">
+			<div class="feature-box col-lg-4 col-12">
+				<i class="feature-icon bi bi-rocket-fill"></i>
+				<h3>Equipment</h3>
+				<p>Our equipment is always up to date and above average.</p>
+			</div>
+			<div class="feature-box col-lg-4 col-12">
+				<i class="feature-icon bi bi-wallet-fill"></i>
+				<h3>Affordable</h3>
+				<p>Nice and exciting trips should be affordable for everyone.</p>
+			</div>
+
+			<div class="feature-box col-lg-4 col-12">
+				<i class="feature-icon bi bi-moon-stars-fill"></i>
+				<h3>Experience</h3>
+				<p>Over 10 years of experience in space tourism.</p>
+			</div>
+		</div>
+	</section>
+</div>
+
+<!-- Newsletter -->
+<div id="newsletter-section" class="">
+	<h2 class="text-center divider line glow">Sign up for our Newsletter</h2>
+	<div>
+		<form class="w-50 mx-auto">
+			<div class="mb-3">
+				<input type="email" class="form-control mt-5 newsletterEmailInput" aria-describedby="emailHelp" placeholder="Email address"/>
+			</div>
+			<div class="mb-3 form-check">
+				<div class="mx-auto">
+					<input type="checkbox" class="form-check-input newsletterEmailCheckbox" id="newsletterCheck"/>
+					<label class="form-check-label" for="newsletterCheck">agree to terms and conditions*</label>
+				</div>
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-light btn-orange fw-bolder">Sign up</button>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- Footer -->
+<footer class="p-5 text-center bg-danger mt-5">Footer</footer>
+</body>
+{% endif %}
 
 {% endblock %}
