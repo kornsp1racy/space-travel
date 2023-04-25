@@ -25,8 +25,16 @@ class DashboardController extends AbstractController
     {
 
 
+        // return $this->render('dashboard/index.html.twig', [
+        //     'controller_name' => 'UserDashboardController',
+        // ]);
+
+
+        $trips = $em->getRepository(Trip::class)->findAll();
+
         return $this->render('dashboard/index.html.twig', [
-            'controller_name' => 'UserDashboardController',
+            'controller_name' => 'DashboardController',
+            'trips' => $trips
         ]);
 
        
