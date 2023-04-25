@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 02:31 AM
+-- Generation Time: Apr 25, 2023 at 04:43 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -22,31 +22,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `space_travel` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `space_travel`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `doctrine_migration_versions`
---
-
-CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
-  `executed_at` datetime DEFAULT NULL,
-  `execution_time` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `doctrine_migration_versions`
---
-
-INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20230419100254', '2023-04-19 10:03:04', 496),
-('DoctrineMigrations\\Version20230419131155', '2023-04-19 13:12:31', 59),
-('DoctrineMigrations\\Version20230419133930', '2023-04-19 13:39:34', 54),
-('DoctrineMigrations\\Version20230419134736', '2023-04-19 13:48:14', 13),
-('DoctrineMigrations\\Version20230420095427', '2023-04-20 09:55:08', 119),
-('DoctrineMigrations\\Version20230420095730', '2023-04-20 09:57:35', 8),
-('DoctrineMigrations\\Version20230423222419', '2023-04-23 22:30:16', 154);
 
 -- --------------------------------------------------------
 
@@ -100,26 +75,25 @@ INSERT INTO `item` (`id`, `name`) VALUES
 
 CREATE TABLE `itinerary` (
   `id` int(11) NOT NULL,
-  `fk_user_id` int(11) NOT NULL,
-  `fk_trip_id` int(11) NOT NULL,
-  `day` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `activity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `restaurant` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accomodation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `selected_trip_id` int(11) NOT NULL,
+  `day` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activity` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `restaurant` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accomodation` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `itinerary`
 --
 
-INSERT INTO `itinerary` (`id`, `fk_user_id`, `fk_trip_id`, `day`, `activity`, `restaurant`, `accomodation`) VALUES
-(1, 2, 2, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat'),
-(2, 2, 1, 'Tuesday', 'Adventure Sports', 'Burger King', 'Modular Habitat'),
-(3, 2, 5, 'Wednesday', 'Cultural Experiences', 'Kentucky Fried Chicken', 'Greenhouse'),
-(4, 2, 3, 'Thursday', 'Earth Observation', 'Domino\'s', 'Aurora Space Station'),
-(5, 2, 4, 'Friday', 'Science Experiments', 'Taco Bell', 'Space Shuttle'),
-(6, 2, 6, 'Saturday', 'Zero-gravity Activities', 'Wendy\'s', 'Greenhouse'),
-(7, 2, 7, 'Sunday', 'Admiring Stars', 'Subway', 'Space Shuttle');
+INSERT INTO `itinerary` (`id`, `selected_trip_id`, `day`, `activity`, `restaurant`, `accomodation`) VALUES
+(8, 1, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat'),
+(9, 5, 'Tuesday', 'Adventure Sports', 'Burger King', 'Modular Habitat'),
+(10, 2, 'Wednesday', 'Cultural Experiences', 'Kentucky Fried Chicken', 'Greenhouse'),
+(11, 6, 'Thursday', 'Earth Observation', 'Domino\'s', 'Aurora Space Station'),
+(12, 7, 'Friday', 'Science Experiments', 'Taco Bell', 'Space Shuttle'),
+(13, 8, 'Saturaday', 'Zero-gravity Activities', 'Wendy\'s', 'Greenhouse'),
+(14, 9, 'Sunday', 'Admiring Stars', 'Subway', 'Space Shuttle');
 
 -- --------------------------------------------------------
 
@@ -132,19 +106,6 @@ CREATE TABLE `mandatory_item_trip` (
   `fk_item_id` int(11) NOT NULL,
   `fk_trip_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `mandatory_item_trip`
---
-
-INSERT INTO `mandatory_item_trip` (`id`, `fk_item_id`, `fk_trip_id`) VALUES
-(1, 1, 6),
-(2, 2, 6),
-(3, 4, 6),
-(4, 1, 8),
-(5, 22, 8),
-(6, 1, 9),
-(7, 25, 9);
 
 -- --------------------------------------------------------
 
@@ -183,9 +144,9 @@ CREATE TABLE `note` (
 --
 
 INSERT INTO `note` (`id`, `fk_user_id`, `date`, `title`, `content`, `image`, `likes`) VALUES
-(1, 2, '2023-04-12', 'Best trip ever', 'Day 1:\r\nAfter months of training and preparation, I can hardly believe that I am finally here on the Moon! The journey was long and uncomfortable, but it was all worth it to see the Earth rise over the horizon of this desolate landscape.\r\n\r\nThe first thing I noticed when I stepped out of the spacecraft was the silence. There is no sound here, no wind, no rustling of leaves, just an eerie stillness that is both peaceful and unnerving.\r\n\r\nWe spent the day exploring the landing site and setting up our equipment. Walking on the Moon is an incredible experience - the low gravity makes every step feel like you\'re bouncing and floating at the same time. It\'s going to take some getting used to, but I think I\'m going to like it here.', 'https://s.w-x.co/util/image/w/de-spacexdpa.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60', 25),
-(2, 2, '2023-04-13', 'Even better', 'Day 2:\r\nToday we ventured further away from the landing site and explored some of the craters and valleys nearby. The landscape is unlike anything I\'ve ever seen before - it\'s both barren and beautiful at the same time. The colors are muted, but there are subtle shades of grey, brown, and even purple in the rocks and dust.\r\n\r\nI couldn\'t help but feel a sense of awe as I looked up at the sky and saw the stars shining so brightly. There\'s no atmosphere to interfere with the view, so the stars are incredibly clear and vivid.\r\n\r\nWe also had some fun playing around in the low gravity - we tried jumping as high as we could and even had a few impromptu races. It\'s amazing how much you can do with just a little bit of effort here.', 'https://i.ds.at/iU_cPw/rs:fill:1600:0/plain/2022/04/13/mondimpakt.jpg', 44),
-(3, 2, '2023-04-14', 'out of ideas', 'Day 3:\r\nToday we conducted some scientific experiments and took some samples of the rocks and soil. It\'s incredible to think that these samples have been untouched for billions of years - they could hold clues to the origins of our solar system and the universe itself.\r\n\r\nWe also had some time to just relax and take in the view. It\'s so peaceful here, without the noise and chaos of life on Earth. I feel like I could stay here forever, just gazing out at the landscape and pondering the mysteries of the universe.', 'https://s.w-x.co/util/image/w/de-mond-astronaut-GettyImages-1353996620%20Kopie.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60', 0);
+(1, 1, '2023-04-12', 'Best trip ever', 'Day 1:\r\nAfter months of training and preparation, I can hardly believe that I am finally here on the Moon! The journey was long and uncomfortable, but it was all worth it to see the Earth rise over the horizon of this desolate landscape.\r\n\r\nThe first thing I noticed when I stepped out of the spacecraft was the silence. There is no sound here, no wind, no rustling of leaves, just an eerie stillness that is both peaceful and unnerving.\r\n\r\nWe spent the day exploring the landing site and setting up our equipment. Walking on the Moon is an incredible experience - the low gravity makes every step feel like you\'re bouncing and floating at the same time. It\'s going to take some getting used to, but I think I\'m going to like it here.', 'https://s.w-x.co/util/image/w/de-spacexdpa.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60', 25),
+(2, 2, '2023-06-05', 'Even better', 'Day 2:\r\nToday we ventured further away from the landing site and explored some of the craters and valleys nearby. The landscape is unlike anything I\'ve ever seen before - it\'s both barren and beautiful at the same time. The colors are muted, but there are subtle shades of grey, brown, and even purple in the rocks and dust.\r\n\r\nI couldn\'t help but feel a sense of awe as I looked up at the sky and saw the stars shining so brightly. There\'s no atmosphere to interfere with the view, so the stars are incredibly clear and vivid.\r\n\r\nWe also had some fun playing around in the low gravity - we tried jumping as high as we could and even had a few impromptu races. It\'s amazing how much you can do with just a little bit of effort here.', 'https://i.ds.at/iU_cPw/rs:fill:1600:0/plain/2022/04/13/mondimpakt.jpg', 44),
+(3, 3, '2023-03-08', 'out of ideas', 'Day 3:\r\nToday we conducted some scientific experiments and took some samples of the rocks and soil. It\'s incredible to think that these samples have been untouched for billions of years - they could hold clues to the origins of our solar system and the universe itself.\r\n\r\nWe also had some time to just relax and take in the view. It\'s so peaceful here, without the noise and chaos of life on Earth. I feel like I could stay here forever, just gazing out at the landscape and pondering the mysteries of the universe.', 'https://s.w-x.co/util/image/w/de-mond-astronaut-GettyImages-1353996620%20Kopie.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60', 0);
 
 -- --------------------------------------------------------
 
@@ -198,6 +159,33 @@ CREATE TABLE `packing_list` (
   `item_id` int(11) NOT NULL,
   `selected_trip_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `packing_list`
+--
+
+INSERT INTO `packing_list` (`id`, `item_id`, `selected_trip_id`) VALUES
+(1, 5, 1),
+(2, 6, 1),
+(3, 27, 1),
+(4, 3, 2),
+(6, 24, 2),
+(7, 3, 2),
+(11, 3, 2),
+(12, 1, 2),
+(13, 3, 2),
+(14, 3, 2),
+(15, 3, 2),
+(16, 2, 2),
+(20, 24, 1),
+(21, 4, 1),
+(22, 15, 5),
+(25, 14, 5),
+(26, 16, 5),
+(27, 13, 5),
+(28, 2, 8),
+(29, 4, 8),
+(30, 15, 10);
 
 -- --------------------------------------------------------
 
@@ -216,12 +204,14 @@ CREATE TABLE `selected_trip` (
 --
 
 INSERT INTO `selected_trip` (`id`, `user_id`, `trip_id`) VALUES
-(1, 3, 2),
-(2, NULL, 4),
-(3, NULL, 3),
-(4, 3, 6),
-(5, 3, 8),
-(6, 3, 9);
+(1, 3, 6),
+(2, NULL, 3),
+(5, 3, 9),
+(6, 3, 5),
+(7, 3, 1),
+(8, 2, 5),
+(9, 2, 2),
+(10, 2, 9);
 
 -- --------------------------------------------------------
 
@@ -287,26 +277,26 @@ INSERT INTO `trip_item` (`trip_id`, `item_id`) VALUES
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `first_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `passport` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)'
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `address`, `password`, `passport`, `phone`, `image`, `roles`) VALUES
-(1, 'Adrian', 'Min', 'admin@email.com', 'Straße 3, 10015 Berlin', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'pass.jpg', '1234556', 'pic.png', '[\"ROLE_ADMIN\"]'),
-(2, 'Max', 'Mustermann', 'mustermann@email.com', 'Allee 15, 89005 München', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'pp.jpg', '2345435', 'profil.jpeg', '[\"ROLE_USER\"]'),
-(3, 'the', 'dude', 'some@dude.com', 'wtf 123', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'pp.jpg', '123123123', 'profile.jpg', '[]'),
-(4, 'Ad', 'Min', 'admin@gmail.com', 'dsfjjf', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'dsfds.jpg', '324345435', '4wrdfg.jpg', '[\"ROLE_ADMIN\"]');
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `address`, `passport`, `phone`, `image`) VALUES
+(1, 'admin@email.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Adrian', 'Min', 'Straße 3, 10015 Berlin', 'pass.jpg', '1234556', 'pic.png'),
+(2, 'mustermann@email.com', '[\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Max', 'Mustermann', 'Allee 15, 89005 München', 'pp.jpg', '2345435', 'profil.jpeg'),
+(3, 'some@dude.com', '[]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'the', 'dude', 'wtf 123', 'pp.jpg', '123123123', 'profile.jpg'),
+(4, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Ad', 'Min', 'dsfjjf', 'dsfds.jpg', '324345435', '4wrdfg.jpg');
 
 -- --------------------------------------------------------
 
@@ -325,12 +315,6 @@ CREATE TABLE `user_reward` (
 --
 
 --
--- Indexes for table `doctrine_migration_versions`
---
-ALTER TABLE `doctrine_migration_versions`
-  ADD PRIMARY KEY (`version`);
-
---
 -- Indexes for table `item`
 --
 ALTER TABLE `item`
@@ -341,8 +325,7 @@ ALTER TABLE `item`
 --
 ALTER TABLE `itinerary`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_FF2238F65741EEB9` (`fk_user_id`),
-  ADD KEY `IDX_FF2238F655931322` (`fk_trip_id`);
+  ADD UNIQUE KEY `UNIQ_FF2238F64DF85090` (`selected_trip_id`);
 
 --
 -- Indexes for table `mandatory_item_trip`
@@ -426,13 +409,13 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `itinerary`
 --
 ALTER TABLE `itinerary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `mandatory_item_trip`
 --
 ALTER TABLE `mandatory_item_trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `messenger_messages`
@@ -450,13 +433,13 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT for table `packing_list`
 --
 ALTER TABLE `packing_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `selected_trip`
 --
 ALTER TABLE `selected_trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `trip`
@@ -468,7 +451,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_reward`
@@ -484,8 +467,7 @@ ALTER TABLE `user_reward`
 -- Constraints for table `itinerary`
 --
 ALTER TABLE `itinerary`
-  ADD CONSTRAINT `FK_FF2238F655931322` FOREIGN KEY (`fk_trip_id`) REFERENCES `trip` (`id`),
-  ADD CONSTRAINT `FK_FF2238F65741EEB9` FOREIGN KEY (`fk_user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `FK_FF2238F64DF85090` FOREIGN KEY (`selected_trip_id`) REFERENCES `selected_trip` (`id`);
 
 --
 -- Constraints for table `mandatory_item_trip`
@@ -505,7 +487,7 @@ ALTER TABLE `note`
 --
 ALTER TABLE `packing_list`
   ADD CONSTRAINT `FK_F43062BD126F525E` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`),
-  ADD CONSTRAINT `FK_F43062BD4DF85090` FOREIGN KEY (`selected_trip_id`) REFERENCES `selected_trip` (`id`);
+  ADD CONSTRAINT `FK_F43062BD4DF85090` FOREIGN KEY (`selected_trip_id`) REFERENCES `selected_trip` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `selected_trip`
