@@ -26,7 +26,7 @@ class SelectedTrip
     #[ORM\OneToMany(mappedBy: 'selectedTrip', targetEntity: PackingList::class)]
     private Collection $packingLists;
 
-    #[ORM\OneToOne(mappedBy: 'selectedTrip', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: 'App\Entity\Itinerary', mappedBy: 'selectedTrip', cascade: ['persist', 'remove'])]
     private ?Itinerary $itinerary = null;
 
     public function __construct()
