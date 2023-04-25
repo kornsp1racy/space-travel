@@ -1,19 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TripController!{% endblock %}
+{% block title %}
+	{{trip.name}}
+	Details
+{% endblock %}
 
 {% block body %}
+	<style>
+		body {
+			background: url("{{ trip.image }}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+			color: white;
+			z-index: -2;
+		}
+		.details-background {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+			background: rgba(0, 0, 0, 0.7);
+		}
+		.details-heading {
+			font-family: 'Bruno Ace SC', cursive;
+			color: var(--accent-color-orange);
+		}
+		.back-arrow {
+			font-size: 1.5rem;
+		}
+    .lh-sm {
+      line-height: 80% !important;
+    }
+    .details-interested {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+    }
+    .details-characteristics {
+      font-size: 1.3rem;
+    }
+	</style>
+	<div class="">
+		<a class="back-arrow text-decoration-none text-light m-2 p-2 fw-bold" href="/">
+			<i class="bi bi-arrow-left"></i>
+			Back</a>
+	</div>
 
-<h1>{{ trip.name }}</h1>
-<p>Destination: {{ trip.destination }}</p>
-<p>Duration: {{ trip.duration }}</p>
-<p>Characteristics: {{ trip.characteristics }}</p>
-<p><img style="width: 200px;" src="{{ trip.image }}" alt="{{ trip.destination }}"></p>
-<p>Host: {{ trip.host }}</p>
-<p>Award: {{ trip.award }}</p>
+	<div class="details-background">
+		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+			<div class="col-md-5 p-lg-5 mx-auto my-5">
 
-<p>Interested? <a href="/trips/{{ trip.id }}/select">Select</a></p>
+				<h4 class="display-5 details-heading">{{ trip.name }}</h4>
+				<h1 class="display-1">{{ trip.destination }}</h1>
+				<p class="fw-lighter lh-sm mt-3">Duration:
+					{{ trip.duration }}
+					Months</p>
+				<p class="fw-lighter lh-sm">Host:
+					{{ trip.host }}</p>
+				<p class="fw-lighter lh-sm mb-3">Award:
+					{{ trip.award }}</p>
+				<p class="font-weight-normal details-characteristics">{{ trip.characteristics }}</p>
+				<p class="details-interested">Interested? <br><a class="btn btn-light btn-orange fw-bold mt-1" href="/trips/{{ trip.id }}/select">Reserve</a></p>
+			</div>
+			<div class="product-device box-shadow d-none d-md-block"></div>
+			<div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+		</div>
+	</div>
 
-<a href="/">Back</a>
+	{# <h1>{{ trip.name }}</h1>
+			<p>Destination: {{ trip.destination }}</p>
+			<p>Duration: {{ trip.duration }}</p>
+			<p>Characteristics: {{ trip.characteristics }}</p>
+			<p><img style="width: 200px;" src="{{ trip.image }}" alt="{{ trip.destination }}"></p>
+			<p>Host: {{ trip.host }}</p>
+			<p>Award: {{ trip.award }}</p>
+			
+			<p>Interested? <a href="/trips/{{ trip.id }}/select">Select</a></p>
+	
+		<a href="/">Back</a> #}
 
 {% endblock %}

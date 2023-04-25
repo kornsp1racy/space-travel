@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
 /* Variables */
 :root {
   --accent-color-orange: rgba(236, 95, 42, 1);
@@ -16,6 +17,7 @@
   box-sizing: border-box;
   font-family: var(--font-family);
 }
+
 /* Buttons */
 .btn-orange {
   color: var(--accent-color-blue);
@@ -48,7 +50,7 @@
 .glow:before,
 .glow:after {
   height: 6px;
-  -webkit-filter: blur(5px);
+  -webkit-filter: blur(8px);
   border-radius: 5px;
 }
 .glow:before {
@@ -69,7 +71,7 @@
 .landing-body {
   opacity: 0;
   transition: opacity 5s;
-  cursor: url("images/rakete.png"), auto;
+  /* cursor: url("images/rakete.png"), auto; */
   background-color: var(--main-bg-color);
   color: white;
 }
@@ -111,13 +113,14 @@
   z-index: -1;
 }
 .landing-h1 {
-  animation-duration: 2s;
+  font-family: 'Bruno Ace SC', cursive;
+  animation-duration: 6s;
   animation-name: slidein;
-  top: 70%;
+  top: 55%;
   right: 10%;
   position: absolute;
   color: white;
-  font-size: 4vw;
+  font-size: 3.5vw;
 }
 
 /* switch button */
@@ -189,6 +192,7 @@
 .feature-icon:hover {
   filter: grayscale(0.2) brightness(80%);
 }
+
 /* Newsletter */
 #newsletter-section {
   padding: var(--main-padding);
@@ -198,7 +202,13 @@
   background-color: var(--accent-color-orange);
 }
 /* Cards */
+.card img {
+  width: 100%;
+  object-fit: fill;
+}
 .card {
+  color: white;
+  background-color: var(--main-bg-color);
   position: relative;
 }
 .card:after {
@@ -243,6 +253,26 @@
 .hide-preloader {
   z-index: -999;
   visibility: hidden;
+}
+/* Footer */
+.footer-landing {
+  background-color: var(--accent-color-orange);
+  text-align: center;
+  padding: 5% 15% 0;
+  margin-top: 5%;
+}
+
+footer i {
+  margin: 20px 10px;
+  font-size: 2.2rem;
+  text-decoration: none;
+}
+.footer-icon:hover {
+  color: var(--accent-color-blue) !important;
+}
+.copyright {
+  font-size: 0.8rem;
+  color: var(--accent-color-blue) !important;
 }
 
 @keyframes slidein {
