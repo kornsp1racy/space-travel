@@ -3,17 +3,234 @@
 {% block title %}Hello UserDashboardController!{% endblock %}
 
 {% block body %}
-<h1>Dashboard</h1>
-
-
-    {% if is_granted('ROLE_ADMIN') %}
+{% if is_granted('ROLE_ADMIN') %}
         <p><a href="/users">Manage Users</a></p>
-    {% else %}
-        <p><a href="/dashboard/details">Personal Details</a></p>        
-    {% endif %}
+{% endif %}
     
-    <p><a href="/dashboard/trips">Your Trips</a></p>
+  
 
-    <a href="/">Home</a>
-    <a href="/logout">Logout</a>
+    
+    
+
+<body>
+
+
+    <!--Navbar-->
+
+
+    <nav class="navbar  navbar-expand-lg " style="background-color:black">
+        <div class="container-fluid">
+            <a class="navbar-brand"href="/"><i class="fa-brands fa-space-awesome fa-lg" style="color: #ffffff;"></i></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/dashboard/trips">Your Trips</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Packing list</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Trip journal</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              
+              <a class="btn btn-outline-light" href="href="/dashboard/details""><i class="fa-regular fa-user fa-lg"></i></a>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+
+    <!--Hero image-->
+
+
+      <div class="bg-image shadow">
+        <div class="container-fluid">
+            <div class="text-center text-align-center align-items-center text-white text">
+                <h1 class="pt-5"></h1>
+            </div>
+        </div>
+    </div>
+
+    <!--Bootstrap Cards for the trips-->
+
+    <section id="desti">
+        <div class="container">
+            <h5 class="section-title h1 py-3" style="text-align:center; color:lightblue">Our favorite trips</h5>
+            <div class="row">
+                <!-- Trips -->
+                <div class="col-xs-12 col-sm-6 col-md-4 mb-5">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside" >
+                                <div class="card" style="background: #282d32;">
+                                    <div class="card-body text-center">
+                                        <p><img class=" img-fluid" src="https://cdn.pixabay.com/photo/2017/02/09/12/02/mars-2051748__340.png" alt="card image"></p>
+                                        <h4 class="card-title"> Our Basic trip</h4>
+                                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque dolor asperiores maiores optio, iusto nisi rem delectus enim harum. Exercitationem.</p>
+                                        <a href="#" class="btn btn-xl"><i class="fa-sharp fa-solid fa-medal fa-2xl" style="color: #c4c116;"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside ">
+                                <div class="card"  style="background:  #282d32;">
+                                    <div class="card-body text-center ">
+                                        <h4 class="card-title">Mars</h4>
+                                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestias quisquam vel at ab. Rerum sed rem exercitationem perspiciatis numquam?</p>
+                                        <p>Duration in Days: 24</p>
+                                        <p>Your Travel Partner</p>
+                                        <p><img class=" img-fluid" src="https://cdn.pixabay.com/photo/2022/01/19/09/26/elon-musk-6949267__340.png" alt="card image"></p>
+                                        <button href="#" class="btn btn-success text-light">Details</button>
+                                        
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Trips -->
+                <div class="col-xs-12 col-sm-6 col-md-4 mb-5">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card" style="background:  #282d32;">
+                                    <div class="card-body text-center">
+                                        <p><img class=" img-fluid" src="https://cdn.pixabay.com/photo/2017/02/09/12/02/mars-2051748__340.png" alt="card image"></p>
+                                        <h4 class="card-title text-light"> Our Basic trip</h4>
+                                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque dolor asperiores maiores optio, iusto nisi rem delectus enim harum. Exercitationem.</p>
+                                        <a href="#" class="btn btn-xl"><i class="fa-sharp fa-solid fa-medal fa-2xl" style="color: #c4c116;"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside ">
+                                <div class="card" style="background: #282d32;">
+                                    <div class="card-body text-center ">
+                                        <h4 class="card-title">Mars</h4>
+                                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestias quisquam vel at ab. Rerum sed rem exercitationem perspiciatis numquam?</p>
+                                        <p>Duration in Days: 24</p>
+                                        <p>Your Travel Partner</p>
+                                        <p><img class=" img-fluid" src="https://cdn.pixabay.com/photo/2022/01/19/09/26/elon-musk-6949267__340.png" alt="card image"></p>
+                                        <button href="#" class="btn btn-success text-light">Details</button>
+                                        
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 mb-5">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside" >
+                                <div class="card" style="background: #282d32;">
+                                    <div class="card-body text-center">
+                                        <p><img class=" img-fluid" src="https://cdn.pixabay.com/photo/2017/02/09/12/02/mars-2051748__340.png" alt="card image"></p>
+                                        <h4 class="card-title"> Our Basic trip</h4>
+                                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque dolor asperiores maiores optio, iusto nisi rem delectus enim harum. Exercitationem.</p>
+                                        <a href="#" class="btn btn-xl"><i class="fa-sharp fa-solid fa-medal fa-2xl" style="color: #c4c116;"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside ">
+                                <div class="card"  style="background:  #282d32;">
+                                    <div class="card-body text-center ">
+                                        <h4 class="card-title">Mars</h4>
+                                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestias quisquam vel at ab. Rerum sed rem exercitationem perspiciatis numquam?</p>
+                                        <p>Duration in Days: 24</p>
+                                        <p>Your Travel Partner</p>
+                                        <p><img class=" img-fluid" src="https://cdn.pixabay.com/photo/2022/01/19/09/26/elon-musk-6949267__340.png" alt="card image"></p>
+                                        <button href="#" class="btn btn-success text-light">Details</button>
+                                        
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--Journal-->
+    <section class="journal pb-3" style="background-color: black;">
+    <div class="container " style="background-color:black;">
+        <h1 style="text-align: center; padding-top:20px;  padding-bottom: 50px; color: lightblue;" >Your best trip experience</h1>
+        <div class="card ms-5 mb-3" style="max-width: 1202px; border-color: black;">
+            <div class="row g-0">
+              <div class="col-md-4" style="background: #282d32;">
+                <img src="https://cdn.pixabay.com/photo/2016/02/11/16/59/dog-1194083_960_720.jpg" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8" style="background: #282d32;">
+                <div class="card-body" style="background: #282d32;">
+                  <h5 class="card-title " style="color: lightblue;">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text text-light">sdasdasdsad</p>
+                </div>
+                <hr style="color: lightblue; width: 770px; margin: 10px;">
+                <div class="col-md-4">
+                        
+                    <button type="submit" class="btn  btn-send  mt-5 ms-1 btn-block" value="Edit" id="send_btn"><a href="create_journal.html" style="text-decoration: none; color: lightblue;">Edit</a></button>
+                    <button type="submit" class="btn  btn-send  mt-5 ms-1 btn-block" value="Delete" id="send_btn_d">Delete</button>
+                    <button type="submit" class="btn  btn-send  mt-5 ms-1 btn-block" value="Create" id="send_btn_l"><a href="create_journal.html" style="text-decoration: none; color: lightblue;">Create New</a></button>
+                </div>
+              
+              </div>
+                
+            </div>
+          </div>
+    </div>
+</section>
+
+    <!--Footer-->
+    <footer class="ft"> 
+        <div class="footer-dark" >
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3 item">
+                            <h3>Services</h3>
+                            <ul>
+                                <li><a href="#">Destinations</a></li>
+                                <li><a href="#">Travel Buddys</a></li>
+                                <li><a href="#">Day2Day</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-3 item">
+                            <h3>About</h3>
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">Team</a></li>
+                               
+                            </ul>
+                        </div>
+                        <div class="col-md-6 item text">
+                            <h3>Our website Name</h3>
+                            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                        </div>
+                        <div class="col item social"><a href="#"><i class="fa-brands fa-facebook fa-lg" style="color: #edeff3;"></i></a><a href="#"><i class="fa-brands fa-twitter fa-lg" style="color: #f4f6fb;"></i></a><a href="#"><i class="fa-brands fa-snapchat fa-lg"></i></a><a href="#"><i class="fa-brands fa-instagram fa-lg"></i></a></div>
+                    </div>
+                    <p class="copyright">Company Name © 2023</p>
+                </div>
+            </footer>
+        </div>
+        
+    </footer>
+</body>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script></body>
+</html>
+
+
+    
+        
 {% endblock %}
