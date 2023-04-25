@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2023 at 04:43 AM
+-- Generation Time: Apr 25, 2023 at 11:19 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -79,21 +79,29 @@ CREATE TABLE `itinerary` (
   `day` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `activity` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `restaurant` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accomodation` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+  `accomodation` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `day_two` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activity_two` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `restaurant_two` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accommodation_two` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `day_three` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activity_three` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `restaurant_three` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accomodation_three` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `itinerary`
 --
 
-INSERT INTO `itinerary` (`id`, `selected_trip_id`, `day`, `activity`, `restaurant`, `accomodation`) VALUES
-(8, 1, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat'),
-(9, 5, 'Tuesday', 'Adventure Sports', 'Burger King', 'Modular Habitat'),
-(10, 2, 'Wednesday', 'Cultural Experiences', 'Kentucky Fried Chicken', 'Greenhouse'),
-(11, 6, 'Thursday', 'Earth Observation', 'Domino\'s', 'Aurora Space Station'),
-(12, 7, 'Friday', 'Science Experiments', 'Taco Bell', 'Space Shuttle'),
-(13, 8, 'Saturaday', 'Zero-gravity Activities', 'Wendy\'s', 'Greenhouse'),
-(14, 9, 'Sunday', 'Admiring Stars', 'Subway', 'Space Shuttle');
+INSERT INTO `itinerary` (`id`, `selected_trip_id`, `day`, `activity`, `restaurant`, `accomodation`, `day_two`, `activity_two`, `restaurant_two`, `accommodation_two`, `day_three`, `activity_three`, `restaurant_three`, `accomodation_three`) VALUES
+(8, 1, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat', '', '', '', '', '', '', '', ''),
+(9, 1, 'Tuesday', 'Adventure Sports', 'Burger King', 'Modular Habitat', '', '', '', '', '', '', '', ''),
+(10, 2, 'Wednesday', 'Cultural Experiences', 'Kentucky Fried Chicken', 'Greenhouse', '', '', '', '', '', '', '', ''),
+(11, 6, 'Thursday', 'Earth Observation', 'Domino\'s', 'Aurora Space Station', '', '', '', '', '', '', '', ''),
+(12, 7, 'Friday', 'Science Experiments', 'Taco Bell', 'Space Shuttle', '', '', '', '', '', '', '', ''),
+(13, 8, 'Saturaday', 'Zero-gravity Activities', 'Wendy\'s', 'Greenhouse', '', '', '', '', '', '', '', ''),
+(14, 9, 'Sunday', 'Admiring Stars', 'Subway', 'Space Shuttle', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -181,11 +189,12 @@ INSERT INTO `packing_list` (`id`, `item_id`, `selected_trip_id`) VALUES
 (21, 4, 1),
 (22, 15, 5),
 (25, 14, 5),
-(26, 16, 5),
 (27, 13, 5),
 (28, 2, 8),
 (29, 4, 8),
-(30, 15, 10);
+(30, 15, 10),
+(31, 11, 5),
+(32, 12, 5);
 
 -- --------------------------------------------------------
 
@@ -211,7 +220,9 @@ INSERT INTO `selected_trip` (`id`, `user_id`, `trip_id`) VALUES
 (7, 3, 1),
 (8, 2, 5),
 (9, 2, 2),
-(10, 2, 9);
+(10, 2, 9),
+(11, 3, 8),
+(12, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -235,7 +246,7 @@ CREATE TABLE `trip` (
 --
 
 INSERT INTO `trip` (`id`, `name`, `destination`, `duration`, `characteristics`, `image`, `host`, `award`) VALUES
-(1, 'Basic', 'Moon', 1, 'Suitable for individuals who haven\'t even sit in a rocket.', 'https://cdn.mos.cms.futurecdn.net/LeZ2ZicMsBz2MDs3JA2kJn.jpg', 'Donald Trump', 'Paper Rocket Medal'),
+(1, 'Basic', 'Moon', 1, 'Suitable for individuals who haven\'t even sit in a rocket.', 'https://cdn.mos.cms.futurecdn.net/LeZ2ZicMsBz2MDs3JA2kJn.jpg', 'Oprah Winfrey', 'Paper Rocket Medal'),
 (2, 'Beginner', 'Mercury', 5, 'Suitable for individuals who have no prior experience or knowledge of the subject matter.', 'https://www.universetoday.com/wp-content/uploads/2009/08/Mercury-e1418849404713.jpg', 'Pope Francis', 'Participant Medal'),
 (3, 'Elementary', 'Venus', 6, 'Suitable for individuals who have a basic understanding of the subject matter, but require more guidance and support.', 'https://www.universetoday.com/wp-content/uploads/2008/10/Venus.jpg', 'Donald Trump', 'Finisher Medal'),
 (4, 'Intermediate', 'Mars', 8, 'Suitable for individuals who habe a good grasp of the subject matter and are looking to expand their knowledge and skills.', 'https://www.universetoday.com/wp-content/uploads/2014/10/True-colour_image_of_Mars_seen_by_OSIRIS.jpg', 'Elon Musk', 'Bronze Medal'),
@@ -243,7 +254,7 @@ INSERT INTO `trip` (`id`, `name`, `destination`, `duration`, `characteristics`, 
 (6, 'Expert', 'Saturn', 42, 'Suitable for individuals who have extensive knowledge and experience in the subject matter and are considered authorities in their field.', 'https://www.universetoday.com/wp-content/uploads/2013/10/saturn_20131010-e1417854764439.jpg', 'Brad Pitt', 'Gold Medal'),
 (7, 'Master', 'Uranus', 72, 'Suitable for individuals who have achieved a high level proficiency in the subject matter and are capable of teaching and mentoring others.', 'https://www.universetoday.com/wp-content/uploads/2008/10/uranus_voy2.jpg', 'Lady Gaga', 'Platinum Medal'),
 (8, 'Elite', 'Neptune', 108, 'Suitable for individuals who are at the top of their profession and have achieved signifiant recognition for their achievements.', 'https://www.universetoday.com/wp-content/uploads/2008/11/neptunevoyager2.jpg', 'Cristiano Ronaldo', 'Valor Medal'),
-(9, 'Legendary', 'Pluto', 120, 'Suitable for individuals who are widely recogniced as pioneers and innovators in their field and have made significant contributions to the advancement of knowledge and understanding.', 'https://www.ardalpha.de/wissen/weltall/astronomie/pluto/pluto-new-horizons-118~_v-img__16__9__l_-1dc0e8f74459dd04c91a0d45af4972b9069f1135.jpg?version=9d729', 'Michael Jackson Hologram', 'Diamond Medal');
+(9, 'Legendary', 'Pluto', 120, 'Suitable for individuals who are widely recognised as pioneers and innovators in their field and have made significant contributions to the advancement of knowledge and understanding.', 'https://www.ardalpha.de/wissen/weltall/astronomie/pluto/pluto-new-horizons-118~_v-img__16__9__l_-1dc0e8f74459dd04c91a0d45af4972b9069f1135.jpg?version=9d729', 'Michael Jackson Hologram', 'Diamond Medal');
 
 -- --------------------------------------------------------
 
@@ -296,7 +307,8 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name
 (1, 'admin@email.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Adrian', 'Min', 'Straße 3, 10015 Berlin', 'pass.jpg', '1234556', 'pic.png'),
 (2, 'mustermann@email.com', '[\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Max', 'Mustermann', 'Allee 15, 89005 München', 'pp.jpg', '2345435', 'profil.jpeg'),
 (3, 'some@dude.com', '[]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'the', 'dude', 'wtf 123', 'pp.jpg', '123123123', 'profile.jpg'),
-(4, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Ad', 'Min', 'dsfjjf', 'dsfds.jpg', '324345435', '4wrdfg.jpg');
+(4, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Ad', 'Min', 'dsfjjf', 'dsfds.jpg', '324345435', '4wrdfg.jpg'),
+(5, 'Anon@nym.com', '[]', '$2y$13$q4MWlTnIS/NaYuynCeE9.OmD5Ou.LnA2NUAupQb9AVEqLwTljQGnG', 'Anon', 'Nym', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -325,7 +337,7 @@ ALTER TABLE `item`
 --
 ALTER TABLE `itinerary`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_FF2238F64DF85090` (`selected_trip_id`);
+  ADD KEY `IDX_FF2238F64DF85090` (`selected_trip_id`);
 
 --
 -- Indexes for table `mandatory_item_trip`
@@ -433,13 +445,13 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT for table `packing_list`
 --
 ALTER TABLE `packing_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `selected_trip`
 --
 ALTER TABLE `selected_trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `trip`
@@ -451,7 +463,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_reward`
