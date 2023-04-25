@@ -67,6 +67,10 @@
     var(--accent-color-orange)
   );
 }
+/* Divider Headings */
+.divider-heading {
+  font-family: 'Bruno Ace SC', cursive;
+}
 /* Landing Page */
 .landing-body {
   opacity: 0;
@@ -113,7 +117,6 @@
   z-index: -1;
 }
 .landing-h1 {
-  font-family: 'Bruno Ace SC', cursive;
   animation-duration: 6s;
   animation-name: slidein;
   top: 55%;
@@ -274,13 +277,39 @@ footer i {
   font-size: 0.8rem;
   color: var(--accent-color-blue) !important;
 }
-
+/* Back to top button */
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+}
+.back-to-top-icon {
+  font-size: 3rem;
+  color: white;
+}
+/* Animation */
+.weightless{
+  animation-name: flo;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  position: relative;
+  bottom: 80px;
+  left:20px;
+}
 @keyframes slidein {
   from {
     margin-right: 50%;
+    font-size: 1.0vw;
   }
   to {
     margin-right: 0%;
+    font-size: 3.5vw;
+  }
+}
+@keyframes flo{
+  50%{
+    transform: translateY(30px);
   }
 }
 /* Landing Page End */
