@@ -18,7 +18,7 @@ class PackingList
     private ?Item $item = null;
     
     #[ORM\ManyToOne(inversedBy: 'packingLists')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?SelectedTrip $selectedTrip = null;
 
     public function getId(): ?int

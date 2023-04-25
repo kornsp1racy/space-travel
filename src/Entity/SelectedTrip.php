@@ -26,6 +26,9 @@ class SelectedTrip
     #[ORM\OneToMany(mappedBy: 'selectedTrip', targetEntity: PackingList::class)]
     private Collection $packingLists;
 
+    #[ORM\OneToOne(mappedBy: 'selectedTrip', cascade: ['persist', 'remove'])]
+    private ?Itinerary $itinerary = null;
+
     public function __construct()
     {
         $this->packingLists = new ArrayCollection();
@@ -86,6 +89,23 @@ class SelectedTrip
                 $packingList->setSelectedTrip(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getItinerary(): ?Itinerary
+    {
+        return $this->itinerary;
+    }
+
+    public function setItinerary(Itinerary $itinerary): self
+    {
+        // set the owning side of the relation if necessary
+        if ($itinerary->getSelectedTrip() !== $this) {
+            $itinerary->setSelectedTrip($this);
+        }
+
+        $this->itinerary = $itinerary;
 
         return $this;
     }

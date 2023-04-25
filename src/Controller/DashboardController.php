@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Item;
+use App\Entity\PackingList;
 use App\Entity\Trip;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -85,9 +86,7 @@ class DashboardController extends AbstractController
          */
         $user = $security->getUser();
         $trip = $user->getSelectedTrips()[$id];
-        $user->removeSelectedTrip($trip);
-        $em->persist($user);
-        $em->persist($trip);
+        $em->remove($trip);
         $em->flush();
 
 
@@ -96,7 +95,7 @@ class DashboardController extends AbstractController
 
     
     #[Route('/dashboard/trips/{id}/packing_list', name: 'app_dashboard_trip_packing_list')]
-    public function packingList($id, Security $security, ManagerRegistry $doctrine): Response
+    public function packingList($id, Request $request, Security $security, ManagerRegistry $doctrine, EntityManagerInterface $em): Response
     {
         /**
          * @var User
@@ -106,11 +105,71 @@ class DashboardController extends AbstractController
 
         $items = $doctrine->getRepository(Item::class)->findAll();
 
+        $userItems = $em->getRepository(PackingList::class)->findBy(['selectedTrip' => $trip]);
+
+        if ($request->isMethod('POST')) {
+
+            $formData = $request->request->all();
+            $selectedItems = $formData['selectedItems'] ?? [];
+
+            $duplicate = false;
+            foreach ($selectedItems as $si) {
+                $packingList = new PackingList();
+                $newItem = $doctrine->getRepository(Item::class)->find($si);
+
+                //check whether current selected item is already part of inventory
+                $duplicate = false;
+                foreach ($userItems as $item) {
+                    // dd($item->getItem()->getId(), $si);
+                    if ($item->getItem()->getId() == $si) {
+                        $duplicate = true;
+                    } 
+                }
+                
+                if (!$duplicate) {
+                    $packingList->setItem($newItem);
+                    $packingList->setSelectedTrip($trip);
+        
+                    $em->persist($newItem);
+                    $em->persist($packingList);
+                    $em->flush();
+                }
+            }
+
+
+
+            $response = $this->redirectToRoute('app_dashboard_trip_packing_list', ['id' => $id, '_cache' => time()]);
+            $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate');
+            $response->headers->set('Pragma', 'no-cache');
+            $response->headers->set('Expires', '0');
+            return $response;
+        }
+
         return $this->render('dashboard/trip_packing.html.twig', [
             'selectedtrip' => $trip,
             'id' => $id,
-            'items' => $items
+            'items' => $items,
+            'userItems' => $userItems
         ]);
     }
+
+    #[Route("/dashboard/trips/{id}/packing_list/{packingListId}/remove", name: 'app_dashboard_trip_packing_list_remove_item')]
+    public function packingListRemoveItem($packingListId, $id, Request $request, Security $security, ManagerRegistry $doctrine, EntityManagerInterface $em): Response
+    {
+        /**
+         * @var User
+         */
+        $user = $security->getUser();
+
+        
+        $packingList = $em->getRepository(PackingList::class)->find($packingListId);
+        $em->remove($packingList);
+        $em->flush();
+       
+
+        return $this->redirectToRoute('app_dashboard_trip_packing_list', ['id' => $id]);
+        
+    }
+
 
 }

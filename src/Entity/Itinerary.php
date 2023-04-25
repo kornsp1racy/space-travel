@@ -13,25 +13,21 @@ class Itinerary
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 20)]
     private ?string $day = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $activity = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $restaurant = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $accomodation = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\OneToOne(inversedBy: 'itinerary', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $fk_user = null;
-
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Trip $fk_trip = null;
+    private ?SelectedTrip $selectedTrip = null;
 
     public function getId(): ?int
     {
@@ -86,26 +82,14 @@ class Itinerary
         return $this;
     }
 
-    public function getFkUser(): ?User
+    public function getSelectedTrip(): ?SelectedTrip
     {
-        return $this->fk_user;
+        return $this->selectedTrip;
     }
 
-    public function setFkUser(?User $fk_user): self
+    public function setSelectedTrip(SelectedTrip $selectedTrip): self
     {
-        $this->fk_user = $fk_user;
-
-        return $this;
-    }
-
-    public function getFkTrip(): ?Trip
-    {
-        return $this->fk_trip;
-    }
-
-    public function setFkTrip(?Trip $fk_trip): self
-    {
-        $this->fk_trip = $fk_trip;
+        $this->selectedTrip = $selectedTrip;
 
         return $this;
     }

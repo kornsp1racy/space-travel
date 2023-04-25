@@ -7,9 +7,11 @@
 <h1>{{ selectedtrip.trip.destination }} Packing List</h1>
 <a href="/dashboard/trips/{{ id }}">Back</a>
     
-<form action="{{ path('app_dashboard_trip_packing_list', {'id': id}) }}" method="post">
+<form method="post">
 
 
+  <h3>Available Items</h3>
+  <p>(Suggested items for {{ selectedtrip.trip.destination }} are preselected. Please consider bringing those.)</p>
   <select name="selectedItems[]" multiple>
     {% for item in items %}
       {% set suggested = false %}
@@ -20,12 +22,25 @@
       {% endfor %}
       <option value="{{ item.id }}" {% if suggested %}selected{% endif %}>{{ item.name }}</option>
     {% endfor %}
-</select>
+  </select>
 
 
+  <p><input type="submit" value="Pack"></p>
+</form> 
 
-  <input type="submit" value="Save">
-</form>
+<div class="mt-5">
+  {% if userItems %}
+  <h3>Your packed items</h3>
+    <div class="border">
+      {% for item in userItems %}
+        <div class="d-flex"><p>{{ item.item.name }}</p><a href="/dashboard/trips/{{id}}/packing_list/{{ item.id }}/remove">x</a></div>
+      {% endfor %}
+    </div>
+  {% else %}
+  <p>You haven't packed any items for this trip yet</p>
+  
+  {% endif %}
+</div>
 
 
 {% endblock %}
