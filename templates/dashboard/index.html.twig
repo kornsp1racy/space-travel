@@ -20,7 +20,7 @@
 
     <nav class="navbar  navbar-expand-lg " style="background-color:black">
         <div class="container-fluid">
-            <a class="navbar-brand"href="/"><i class="bi bi-person-circle"></i></a>
+            <a class="navbar-brand"href="/"><i class="bi bi-rocket text-light"></i></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -38,7 +38,7 @@
             </ul>
             <form class="d-flex" role="search">
               
-              <a class="btn btn-outline-light" href="href="/dashboard/details""><i class="fa-regular fa-user fa-lg"></i></a>
+              <a class="btn btn-outline-light" href="href="/dashboard/details""><i class="bi bi-person"></i></a>
             </form>
           </div>
         </div>
@@ -64,7 +64,9 @@
             <div class="row">
                 
         
+                  {% for trip in trips %}
                     
+                  
               
                 <!-- Trips -->
                 <div class="col-xs-12 col-sm-6 col-md-4 mb-5">
@@ -73,21 +75,22 @@
                             <div class="frontside" >
                                 <div class="card" style="background: #282d32;">
                                     <div class="card-body text-center">
-                                        <p><img class=" img-fluid" src="https://cdn.pixabay.com/photo/2017/02/09/12/02/mars-2051748__340.png" alt="card image"></p>
-                                        <h4 class="card-title"> dasdasdasd</h4>
-                                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque dolor asperiores maiores optio, iusto nisi rem delectus enim harum. Exercitationem.</p>
-                                        <a href="#" class="btn btn-xl"><i class="fa-sharp fa-solid fa-medal fa-2xl" style="color: #c4c116;"></i></a>
+                                        <p><img class=" img-fluid" src={{trip.image}} alt="card image"></p>
+                                        <h4 class="card-title"> {{trip.name}}</h4>
+                                        <p class="card-text">{{trip.characteristics}}</p>
+                                        <a href="#" class="btn btn-xl"><i class="bi bi-award text-light">{{trip.award}}</i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="backside ">
                                 <div class="card"  style="background:  #282d32;">
                                     <div class="card-body text-center ">
-                                        <h4 class="card-title">Mars</h4>
-                                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat molestias quisquam vel at ab. Rerum sed rem exercitationem perspiciatis numquam?</p>
-                                        <p>Duration in Days: 24</p>
-                                        <p>Your Travel Partner</p>
-                                        <p><img class=" img-fluid" src="https://cdn.pixabay.com/photo/2022/01/19/09/26/elon-musk-6949267__340.png" alt="card image"></p>
+                                        <h4 class="card-title">{{trip.destination}}</h4>
+                                        <p class="card-text">{{trip.characteristics}}</p>
+                                        <p>Duration in Days:  {{trip.duration}}</p>
+                                        <p>Your Travel Partner: {{trip.host}}</p>
+                                        <p>Award: {{trip.award}}</p>
+                                        
                                         <button href="#" class="btn btn-success text-light">Details</button>
                                         
                                       
@@ -97,8 +100,8 @@
                         </div>
                     </div>
                 </div>
-                
-             
+                {% endfor %}  
+             <!--
                 <div class="col-xs-12 col-sm-6 col-md-4 mb-5">
                     <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                         <div class="mainflip">
@@ -159,7 +162,7 @@
                         </div>
                     </div>
                 </div>
-                 
+                 -->
 
             </div>
         </div>
