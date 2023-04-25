@@ -15,10 +15,14 @@ class HomeController extends AbstractController
 {
 
     #[Route('/', name: 'app_home')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine, Security $security): Response
     {
 
         $trips = $doctrine->getRepository(Trip::class)->findAll();
+
+        if ($security->isGranted('ROLE_USER')) {
+            return $this->redirectToRoute('app_dashboard');
+        }
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
