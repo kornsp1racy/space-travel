@@ -25,7 +25,7 @@ class Itinerary
     #[ORM\Column(length: 100)]
     private ?string $accomodation = null;
 
-    #[ORM\ManyToOne(targetEntity: 'App\Entity\SelectedTrip', inversedBy: 'itinerary', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: SelectedTrip::class, inversedBy: 'itinerary', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?SelectedTrip $selectedTrip = null;
 

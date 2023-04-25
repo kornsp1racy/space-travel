@@ -26,12 +26,13 @@ class SelectedTrip
     #[ORM\OneToMany(mappedBy: 'selectedTrip', targetEntity: PackingList::class)]
     private Collection $packingLists;
 
-    #[ORM\OneToMany(targetEntity: 'App\Entity\Itinerary', mappedBy: 'selectedTrip', cascade: ['persist', 'remove'])]
-    private ?Itinerary $itinerary = null;
+    #[ORM\OneToMany(targetEntity: Itinerary::class, mappedBy: 'selectedTrip', cascade: ['persist', 'remove'])]
+    private ?Collection $itinerary = null;
 
     public function __construct()
     {
         $this->packingLists = new ArrayCollection();
+        $this->itinerary = new ArrayCollection();
     }
 
     public function getId(): ?int
