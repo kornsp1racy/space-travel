@@ -16,19 +16,19 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', TextType::class, ["attr" =>["class" => "m-1 form-control"]])
+            ->add('email', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
             ->add('roles', ChoiceType::class,[
                 "choices" => [
                     "User" => "ROLE_USER",
                     "Admin" => "ROLE_ADMIN"
-                ]
+                ], "attr" => ["class" => "m-1 form-control"]
             ])
-            ->add('first_name', TextType::class, ["attr" =>["class" => ""]])
-            ->add('last_name', TextType::class, ["attr" =>["class" => ""]])
-            ->add('address', TextType::class, ["attr" =>["class" => ""]])
-            ->add('passport', TextType::class, ["attr" =>["class" => ""]])
-            ->add('phone', TextType::class, ["attr" =>["class" => ""]])
-            ->add('image', TextType::class, ["attr" =>["class" => ""]])
+            ->add('first_name', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
+            ->add('last_name', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
+            ->add('address', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
+            ->add('passport', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
+            ->add('phone', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
+            ->add('image', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
         ;
 
         $builder->get('roles')

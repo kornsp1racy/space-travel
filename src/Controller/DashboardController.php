@@ -18,6 +18,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController
 {
+
+  
+
     #[Route('/dashboard', name: 'app_dashboard')]
     public function index(Security $security, EntityManagerInterface $em): Response
     {
@@ -39,6 +42,8 @@ class DashboardController extends AbstractController
             'trips' => $trips,
             'selectedTrips' => $selectedTrips
         ]);
+
+       
     }
 
     #[Route('/dashboard/details', name: 'app_dashboard_personal_details')]
