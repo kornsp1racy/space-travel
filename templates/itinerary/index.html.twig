@@ -15,8 +15,32 @@
     <h3>You already planned all your days.</h3>
 {% endif %}
 
+<div class="d-flex flex-wrap gap-2" style="color: black;">
+    {% set counter = 0 %}
+    {% for entry in entries %}
+        <div class="border" style="width: 300px">
+            <div class="d-flex justify-content-between">
+                <strong>Day</strong>
+                <div>{{ entry.day }}</div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <strong>Activity</strong>
+                <div>{{ entry.activity }}</div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <strong>Restaurant</strong>
+                <div>{{ entry.restaurant }}</div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <strong>Accommodation</strong>
+                <div>{{ entry.accommodation }}</div>
+            </div>
+            <div><a class="text-danger" href="/dashboard/trips/{{id}}/itinerary/{{ counter }}/remove">X</a></div>
+        </div>
+    {% set counter = counter + 1 %}
+    {% endfor %}
+</div>
 
-
-<p><a href="/dashboard/trips/{{id}}/itinerary">Back</a></p>
+<p><a href="/dashboard/trips/{{id}}/">Back</a></p>
 
 {% endblock %}

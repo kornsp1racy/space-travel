@@ -29,11 +29,13 @@ class ItineraryController extends AbstractController
         $selectedTrip = $user->getSelectedTrips()[$id];
         $duration = $selectedTrip->getTrip()->getDuration();
         
-        $count = count($em->getRepository(Itinerary::class)->findBy(['selectedTrip' => $selectedTrip]));
-
-        // $selectedTripId = $selectedTrip->getId();
+        $entries = $em->getRepository(Itinerary::class)->findBy(['selectedTrip' => $selectedTrip]);
+        $count = count($entries);
+        
 
         $canPlan = $count < $duration; 
+
+        // dd($entries);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,7 +52,31 @@ class ItineraryController extends AbstractController
             'count' => $count,
             'duration' => $duration,
             'id' => $id,
-            'canPlan'=> $canPlan
+            'canPlan'=> $canPlan,
+            'entries' => $entries
         ]);
     }
+
+    
+
+    #[Route('/dashboard/trips/{id}/itinerary/{entryId}/remove', name: 'app_itinerary_remove')]
+    public function remove($id, $entryId, Request $request, Security $security, EntityManagerInterface $em): Response
+    {
+
+        /**
+         * @var User
+         */
+        $user = $security->getUser();
+        $selectedTrip = $user->getSelectedTrips()[$id];
+        // dd($selectedTrip);
+        $entries = $em->getRepository(Itinerary::class)->findBy(['selectedTrip' => $selectedTrip]);
+
+        $entry = $entries[$entryId];
+
+        $em->remove($entry);
+        $em->flush();
+
+        return $this->redirectToRoute('app_itinerary', ['id' => $id]);
+    }
+
 }
