@@ -23,7 +23,7 @@ class Itinerary
     private ?string $restaurant = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $accomodation = null;
+    private ?string $accommodation = null;
 
     #[ORM\ManyToOne(targetEntity: SelectedTrip::class, inversedBy: 'itinerary', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -51,7 +51,7 @@ class Itinerary
     private ?string $restaurant_three = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $accomodation_three = null;
+    private ?string $accommodation_three = null;
 
     public function getId(): ?int
     {
@@ -94,14 +94,14 @@ class Itinerary
         return $this;
     }
 
-    public function getAccomodation(): ?string
+    public function getAccommodation(): ?string
     {
-        return $this->accomodation;
+        return $this->accommodation;
     }
 
-    public function setAccomodation(string $accomodation): self
+    public function setAccommodation(string $accomodation): self
     {
-        $this->accomodation = $accomodation;
+        $this->accommodation = $accomodation;
 
         return $this;
     }
@@ -202,14 +202,14 @@ class Itinerary
         return $this;
     }
 
-    public function getAccomodationThree(): ?string
+    public function getAccommodationThree(): ?string
     {
-        return $this->accomodation_three;
+        return $this->accommodation_three;
     }
 
-    public function setAccomodationThree(string $accomodation_three): self
+    public function setAccommodationThree(string $accomodation_three): self
     {
-        $this->accomodation_three = $accomodation_three;
+        $this->accommodation_three = $accomodation_three;
 
         return $this;
     }

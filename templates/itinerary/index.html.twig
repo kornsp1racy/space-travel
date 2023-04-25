@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ItineraryController!{% endblock %}
+
+{% block body %}
+
+<h1>{{ count }}/{{ duration }} days planned</h1>
+
+{% if canPlan %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Add">
+    {{ form_end(form) }}
+{% else %}
+    <h3>You already planned all your days.</h3>
+{% endif %}
+
+
+
+<p><a href="/dashboard/trips/{{id}}/itinerary">Back</a></p>
+
+{% endblock %}

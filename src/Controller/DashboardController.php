@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Item;
 use App\Entity\PackingList;
 use App\Entity\Trip;
+use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,12 +27,17 @@ class DashboardController extends AbstractController
         //     'controller_name' => 'UserDashboardController',
         // ]);
 
-
+        /**
+         * @var User
+         */
+        $user = $security->getUser();
+        
+        $selectedTrips = $user->getSelectedTrips();
         $trips = $em->getRepository(Trip::class)->findAll();
-
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
-            'trips' => $trips
+            'trips' => $trips,
+            'selectedTrips' => $selectedTrips
         ]);
     }
 
