@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Item;
+use App\Entity\Itinerary;
 use App\Entity\Note;
 use App\Entity\PackingList;
 use App\Entity\Trip;
@@ -51,12 +52,32 @@ class DashboardController extends AbstractController
     public function personalDetails(Request $request, UserRepository $userRepository, Security $security): Response
     {   
 
+        /**
+         * @var User 
+         */
         $user = $security->getUser();
         $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        $isAdmin = false;
+        foreach ($user->getRoles() as $role) {
+            if ($role == "ROLE_ADMIN") {
+                $isAdmin = true;
+            }
+        } 
 
+        $form->handleRequest($request);
+        
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            if ($isAdmin) {
+
+                $user->setRoles(["ROLE_ADMIN", "ROLE_USER"]);
+            } else {
+                $user->setRoles(["ROLE_USER"]);
+            }
+
             $userRepository->save($user, true);
+
 
             return $this->redirectToRoute('app_dashboard');
         }
@@ -82,19 +103,23 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard/trips/{id}', name: 'app_dashboard_mange_trip')]
-    public function manage($id, Security $security): Response
+    #[Route('/dashboard/trips/{id}', name: 'app_dashboard_manage_trip')]
+    public function manage($id, Security $security, EntityManagerInterface $em): Response
     {
         /**
          * @var User
          */
         $user = $security->getUser();
         $trip = $user->getSelectedTrips()[$id];
-       
+
+        $userItems = $em->getRepository(PackingList::class)->findBy(['selectedTrip' => $trip]);
+        $entries = $em->getRepository(Itinerary::class)->findBy(['selectedTrip' => $trip]);
 
         return $this->render('dashboard/trip.html.twig', [
             'trip' => $trip,
-            'id' => $id
+            'id' => $id,
+            'packingList' => $userItems,
+            'itinerary' => $entries
         ]);
     }
 

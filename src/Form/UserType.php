@@ -28,7 +28,7 @@ class UserType extends AbstractType
             ->add('address', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
             ->add('passport', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
             ->add('phone', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
-            ->add('image', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
+            // ->add('image', TextType::class, ["attr" =>["class" => "my-1 form-control"]])
         ;
 
         $builder->get('roles')
