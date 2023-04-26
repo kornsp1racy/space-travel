@@ -1,53 +1,52 @@
 // Glow Effect Mouse/Pointer
-document.addEventListener("mousemove", function(event) {
-  var x = event.clientX;
-  var y = event.clientY + window.scrollY; // add scroll position to y value
-  var pointer = document.getElementById("pointer");
-  var glowing = document.getElementById("glowing");
-  pointer.style.left = x + "px";
-  pointer.style.top = y + "px";
-  glowing.style.left = x - 20 + "px";
-  glowing.style.top = y - 20 + "px";
-});
+// document.addEventListener("mousemove", function(event) {
+//   var x = event.clientX;
+//   var y = event.clientY + window.scrollY; // add scroll position to y value
+//   var pointer = document.getElementById("pointer");
+//   var glowing = document.getElementById("glowing");
+//   pointer.style.left = x + "px";
+//   pointer.style.top = y + "px";
+//   glowing.style.left = x - 20 + "px";
+//   glowing.style.top = y - 20 + "px";
+// });
 
-document.addEventListener("scroll", function(event) {
-  var y = event.target.scrollingElement.scrollTop + event.clientY; // add scroll position to y value
-  var pointer = document.getElementById("pointer");
-  var glowing = document.getElementById("glowing");
-  pointer.style.top = y + "px";
-  glowing.style.top = y - 20 + "px";
-});
+// document.addEventListener("scroll", function(event) {
+//   var y = event.target.scrollingElement.scrollTop + event.clientY; // add scroll position to y value
+//   var pointer = document.getElementById("pointer");
+//   var glowing = document.getElementById("glowing");
+//   pointer.style.top = y + "px";
+//   glowing.style.top = y - 20 + "px";
+// });
 
-document.addEventListener("mouseover", function(event) {
-  var glowing = document.getElementById("glowing") ? document.getElementById("glowing") : null;
-  if(glowing != null){
-    glowing.style.opacity = 1;
-  }
-});
+// document.addEventListener("mouseover", function(event) {
+//   var glowing = document.getElementById("glowing") ? document.getElementById("glowing") : null;
+//   if(glowing != null){
+//     glowing.style.opacity = 1;
+//   }
+// });
 
-document.addEventListener("mouseout", function(event) {
-  var glowing = document.getElementById("glowing");
-  glowing.style.opacity = 0;
-});
-document.addEventListener("mouseover", function(event) {
-  var glowing = document.getElementById("glowing"); // change ID to "glowing"
-  if(glowing != null){
-    glowing.style.opacity = 1;
+// document.addEventListener("mouseout", function(event) {
+//   var glowing = document.getElementById("glowing");
+//   glowing.style.opacity = 0;
+// });
+// document.addEventListener("mouseover", function(event) {
+//   var glowing = document.getElementById("glowing"); // change ID to "glowing"
+//   if(glowing != null){
+//     glowing.style.opacity = 1;
 
-  }
-});
+//   }
+// });
 
-document.addEventListener("mouseout", function(event) {
-  var glowing = document.getElementById("glowing"); // change ID to "glowing"
-  if(glowing != null){
-    glowing.style.opacity = 0;
+// document.addEventListener("mouseout", function(event) {
+//   var glowing = document.getElementById("glowing"); // change ID to "glowing"
+//   if(glowing != null){
+//     glowing.style.opacity = 0;
+//   }
+// });
 
-  }
-});
-
-document.addEventListener('mouseout', () => {
-  glowPointer.style.opacity = 0;
-});
+// document.addEventListener('mouseout', () => {
+//   glowPointer.style.opacity = 0;
+// });
 
 const btn = document.querySelector(".switch-btn");
 const video = document.querySelector(".video-container");

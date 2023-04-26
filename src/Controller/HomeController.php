@@ -30,4 +30,19 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/team', name: 'app_home_team')]
+    public function team(ManagerRegistry $doctrine, Security $security): Response
+    {
+
+        $trips = $doctrine->getRepository(Trip::class)->findAll();
+
+        // if ($security->isGranted('ROLE_USER')) {
+        //     return $this->redirectToRoute('app_dashboard');
+        // }
+
+        return $this->render('home/team.html.twig', [
+            'controller_name' => 'HomeController',
+            'trips' => $trips
+        ]);
+    }
 }

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
 /* Variables */
 :root {
-  --accent-color-orange: rgba(236, 95, 42, 1);
+  --accent-color-orange: rgba(255, 95, 42, 1);
   --accent-color-blue: rgba(18, 50, 82, 1);
   --second-bg-color: rgba(2, 4, 8, 1);
   --main-bg-color: rgb(2, 4, 8);
@@ -26,6 +26,12 @@
 .btn-blue {
   color: var(--accent-color-orange);
   background-color: var(--accent-color-blue);
+  border-color: var(--accent-color-blue);
+}
+.btn-logout {
+  color: var(--accent-color-blue);
+  background-color: var(--accent-color-orange);
+  border: solid 1px;
   border-color: var(--accent-color-blue);
 }
 /* Horizontal Rules */
@@ -174,6 +180,9 @@
 /* User Journal */
 #journal-section {
   padding: var(--main-padding);
+}
+.note-title {
+  color: var(--accent-color-orange);
 }
 
 /* Features */
