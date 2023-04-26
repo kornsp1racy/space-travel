@@ -1,46 +1,96 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ItineraryController!{% endblock %}
+{% block title %}Hello ItineraryController!
+{% endblock %}
 
 {% block body %}
+	<style>
+		body {
+			background: var(--main-bg-color);
+			color: white;
+		}
+		.back-arrow {
+			font-size: 1.5rem;
+		}
+		.form-container {
+			border-style: solid;
+			border-color: var(--accent-color-orange) !important;
+		}
+		.btn-remove {
+			height: 20px;
+			width: 20px;
+		}
+		.icon-remove {
+			font-size: 0.8rem;
+			position: relative;
+			left: -5px;
+			bottom: 5px;
+		}
+	</style>
+	<div class="">
+		<a class="back-arrow text-decoration-none text-light m-2 p-2 fw-bold" href="/dashboard/trips/{{id}}/">
+			<i class="bi bi-arrow-left"></i>
+			Back</a>
+	</div>
 
-<h1>{{ count }}/{{ duration }} days planned</h1>
+	<div class="form-container container text-center w-50 border rounded p-5 m-5 mx-auto">
+		<h1 class="divider-heading text-center mb-5">{{ count }}/{{ duration }}
+			days planned</h1>
 
-{% if canPlan %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="Add">
-    {{ form_end(form) }}
-{% else %}
-    <h3>You already planned all your days.</h3>
-{% endif %}
+		{% if canPlan %}
+			{{ form_start(form) }}
+			<div class="row mb-3">
+				{{ form_label(form.day, "Day", {'label_attr': {'class': 'col-sm-3 col-form-label'}}) }}
+				{{ form_widget(form.day, {'attr': {'class': 'col-sm-9 border-dark rounded border-1'}}) }}
+			</div>
+			<div class="row mb-3">
+				{{ form_label(form.activity, "Activity", {'label_attr': {'class': 'col-sm-3 col-form-label'}}) }}
+				{{ form_widget(form.activity, {'attr': {'class': 'col-sm-9 border-dark rounded border-1'}}) }}
+			</div>
+			<div class="row mb-3">
+				{{ form_label(form.restaurant, "Restaurant", {'label_attr': {'class': 'col-sm-3 col-form-label'}}) }}
+				{{ form_widget(form.restaurant, {'attr': {'class': 'col-sm-9 border-dark rounded border-1'}}) }}
+			</div>
+			<div class="row mb-3">
+				{{ form_label(form.accommodation, "Accommodation", {'label_attr': {'class': 'col-sm-3 col-form-label'}}) }}
+				{{ form_widget(form.accommodation, {'attr': {'class': 'col-sm-9 border-dark rounded border-1'}}) }}
+			</div>
+			{{ form_widget(form) }}
+			<input class="btn btn-light btn-orange fw-bold mb-4 mt-2" type="submit" value="Add">
+			{{ form_end(form) }}
+		{% else %}
+			<h3>You already planned all your days.</h3>
+		{% endif %}
+		<div class="d-flex flex-wrap gap-2">
+			{% set counter = 0 %}
+			{% for entry in entries %}
+				<div class="border rounded p-2" style="width: 100%">
+					<div class="d-flex justify-content-between">
+						<strong>Day</strong>
+						<div>{{ entry.day }}</div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<strong>Activity</strong>
+						<div>{{ entry.activity }}</div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<strong>Restaurant</strong>
+						<div>{{ entry.restaurant }}</div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<strong>Accommodation</strong>
+						<div>{{ entry.accommodation }}</div>
+					</div>
+					<div>
+						<a class="btn-remove btn btn-danger btn-sm me-auto" href="/dashboard/trips/{{id}}/itinerary/{{ counter }}/remove">
+							<i class="icon-remove bi bi-trash"></i>
+						</a>
+					</div>
+				</div>
+				{% set counter = counter + 1 %}
+			{% endfor %}
+		</div>
+	</div>
 
-<div class="d-flex flex-wrap gap-2" style="color: black;">
-    {% set counter = 0 %}
-    {% for entry in entries %}
-        <div class="border" style="width: 300px">
-            <div class="d-flex justify-content-between">
-                <strong>Day</strong>
-                <div>{{ entry.day }}</div>
-            </div>
-            <div class="d-flex justify-content-between">
-                <strong>Activity</strong>
-                <div>{{ entry.activity }}</div>
-            </div>
-            <div class="d-flex justify-content-between">
-                <strong>Restaurant</strong>
-                <div>{{ entry.restaurant }}</div>
-            </div>
-            <div class="d-flex justify-content-between">
-                <strong>Accommodation</strong>
-                <div>{{ entry.accommodation }}</div>
-            </div>
-            <div><a class="text-danger" href="/dashboard/trips/{{id}}/itinerary/{{ counter }}/remove">X</a></div>
-        </div>
-    {% set counter = counter + 1 %}
-    {% endfor %}
-</div>
-
-<p><a href="/dashboard/trips/{{id}}/">Back</a></p>
 
 {% endblock %}
