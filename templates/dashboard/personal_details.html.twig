@@ -50,10 +50,6 @@
 		{{ form_label(form.phone, "Phone", {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
 		{{ form_widget(form.phone, {'attr': {'class': 'col-sm-10 border-dark rounded border-1'}}) }}
 	</div>
-	<div class="row mb-3">
-		{{ form_label(form.image, "Image", {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
-		{{ form_widget(form.image, {'attr': {'class': 'col-sm-10 border-dark rounded border-1'}}) }}
-	</div>
 		{{ form_row(form._token) }}
 		<button class="btn btn-light btn-orange fw-bold m-3">{{ button_label|default('Save') }}</button>
 		{{ form_end(form, { 'render_rest': false}) }}

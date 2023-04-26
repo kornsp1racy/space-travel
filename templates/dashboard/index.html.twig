@@ -16,39 +16,6 @@
 		<!--Navbar-->
 
 
-<<<<<<< HEAD
-    <nav class="navbar  navbar-expand-lg " style="background-color:black">
-        <div class="container-fluid">
-            <a class="navbar-brand"href="/"><i class="bi bi-rocket text-light"></i></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            {% if is_granted('ROLE_ADMIN') %}
-              <li class="nav-item">
-                <a class="nav-link text-danger" href="/users">Manage Users</a>
-              </li>
-              {% endif %}
-              <li class="nav-item">
-                <a class="nav-link text-light" href="/dashboard/trips">Your Trips</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link text-light" href="/note">Trip journal</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="#team">Our Team</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              
-              <a class="btn btn-outline-light" href="/dashboard/details"><i class="bi bi-person"></i></a>
-            </form>
-          </div>
-        </div>
-      </nav>
-=======
 		<nav class="navbar navbar-expand-lg " style="background-color:black">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">
@@ -77,203 +44,11 @@
 				</div>
 			</div>
 		</nav>
->>>>>>> 84a7955340fccd7466b0413ed573d625f78f8ffa
 
 
 		<!--Hero image-->
 
 
-<<<<<<< HEAD
-      <div class="bg-image shadow">
-        <div class="container-fluid">
-            <div class="text-center text-align-center align-items-center text-white text">
-                <h1 class="pt-5"></h1>
-            </div>
-        </div>
-    </div>
-
-    <!--Bootstrap Cards for the trips-->
-
-    <section id="desti">
-        <div class="container">
-            <h5 class="section-title h1 py-3" style="text-align:center; color:lightblue">Our  trips</h5>
-            <div class="row">
-                
-        
-                  {% for trip in trips %}
-                    
-                  
-              
-                <!-- Trips -->
-                <div class="col-xs-12 col-sm-6 col-md-4 mb-5">
-                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                        <div class="mainflip">
-                            <div class="frontside" >
-                                <div class="card" style="background: #282d32;">
-                                    <div class="card-body text-center" style="height: 350px;">
-                                        <p><img class=" img-fluid" src={{trip.image}} alt="card image"></p>
-                                        <h4 class="card-title"> {{trip.name}}</h4>
-                                        <p class="card-text">{{trip.characteristics}}</p>
-                                        <a href="#" class="btn btn-xl"><i class="bi bi-award text-light">{{trip.award}}</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="backside ">
-                                <div class="card"  style="background:  #282d32;">
-                                    <div class="card-body text-center ">
-                                        <h4 class="card-title">{{trip.destination}}</h4>
-                                        <p class="card-text">{{trip.characteristics}}</p>
-                                        <p>Duration in Days:  {{trip.duration}}</p>
-                                        <p>Your Travel Partner: {{trip.host}}</p>
-                                        <p>Award: {{trip.award}}</p>
-                                        
-                                        <button href="#" class="btn btn-success text-light">Details</button>
-                                        
-                                      
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}  
-         
-
-            </div>
-        </div>
-    </section>
-    <!--Team members-->
-    <section id="team" class="team" style="background-color: black;">
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="section-title mb-4 pb-2">
-                    <h4 class="title mb-4" style="color:lightblue">Our Business Minds</h4>
-                    <p class="text para-desc mx-auto mb-0"  style="color:lightblue">The best team for your company</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row" style="margin-left: 170px;">
-                <div class="col-lg-2 col-md-6 col-12 mt-4 pt-2 ">
-                    <div class="team text-center rounded p-3 py-4">
-                        <img src="images/Rob.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
-                        <div class="content mt-3">
-                            <h4 class="title mb-0" style="color:lightblue">Rob Grace</h4>
-                            <small class="text" style="color:lightblue">Junior Full-Stack Webdeveloper</small>
-                            <ul class="list-unstyled mt-3 social-icon social mb-0">
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-facebook" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-instagram" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-twitter" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-linkedin" style="color:lightblue"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-12 mt-4 pt-2">
-                    <div class="team text-center rounded p-3 py-4">
-                        <img src="images/peter.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
-                        <div class="content mt-3">
-                            <h4 class="title mb-0" style="color:lightblue">Peter Radakovits</h4>
-                            <small class="text" style="color:lightblue">Junior Full-Stack Webdeveloper</small>
-                            <ul class="list-unstyled mt-3 social-icon social mb-0">
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-facebook" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-instagram" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-twitter" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-linkedin" style="color:lightblue"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-12 mt-4 pt-2">
-                    <div class="team text-center rounded p-3 py-4">
-                        <img src="images/Michael.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
-                        <div class="content mt-3">
-                            <h4 class="title mb-0" style="color:lightblue">Michael Schmid</h4>
-                            <small class="text" style="color:lightblue">Junior Full-Stack Webdeveloper</small>
-                            <ul class="list-unstyled mt-3 social-icon social mb-0">
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-facebook" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-instagram" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-twitter" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-linkedin" style="color:lightblue"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-12 mt-4 pt-2">
-                    <div class="team text-center rounded p-3 py-4">
-                        <img src="images/dodo.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
-                        <div class="content mt-3">
-                            <h4 class="title mb-0" style="color:lightblue">Dogukan Dogan</h4>
-                            <small class="text" style="color:lightblue">Junior Full-Stack Webdeveloper</small>
-                            <ul class="list-unstyled mt-3 social-icon social mb-0">
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-facebook" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-instagram" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-twitter" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-linkedin" style="color:lightblue"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-12 mt-4 pt-2">
-                    <div class="team text-center rounded p-3 py-4">
-                        <img src="images/Kristof.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
-                        <div class="content mt-3">
-                            <h4 class="title mb-0" style="color:lightblue">Kristof Nagy</h4>
-                            <small class="text" style="color:lightblue">Junior Full-Stack Webdeveloper</small>
-                            <ul class="list-unstyled mt-3 social-icon social mb-0">
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-facebook" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-instagram" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-twitter" style="color:lightblue"></i></a></li>
-                                <li class="list-inline-item"><a href="" class="rounded"><i class="bi bi-linkedin" style="color:lightblue"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-        </div>
-
-    </section>
-    <!--Footer-->
-    <footer class="ft"> 
-        <div class="footer-dark" >
-            <footer>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-3 item">
-                            <h3>Services</h3>
-                            <ul>
-                                <li><a href="#">Destinations</a></li>
-                                <li><a href="#">Travel Buddys</a></li>
-                                <li><a href="#">Day2Day</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6 col-md-3 item">
-                            <h3>About</h3>
-                            <ul>
-                                <li><a href="#team">Company</a></li>
-                                <li><a href="#">Team</a></li>
-                               
-                            </ul>
-                        </div>
-                        <div class="col-md-6 item text">
-                            <h3>Our website Name</h3>
-                            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
-                        </div>
-                        <div class="col item social"><a href="https://facebook.com/Astro-Tours"><i class="bi bi-facebook"></i></a><a href="https://instagram.com/Astro-Tours"><i class="bi bi-instagram"></i></a><a href="https://twitter.com/Astro-Tours"><i class="bi bi-twitter"></i></a></div>
-                    </div>
-                    <p class="copyright">Company Name © 2023</p>
-                </div>
-            </footer>
-        </div>
-        
-    </footer>
-    
-</body>
-
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script></body>
-</html>
-=======
 		<div class="bg-image shadow">
 			<div class="container-fluid">
 				<div class="text-center text-align-center align-items-center text-white text">
@@ -281,7 +56,6 @@
 				</div>
 			</div>
 		</div>
->>>>>>> 84a7955340fccd7466b0413ed573d625f78f8ffa
 
 
 		<!--Your Trips-->
