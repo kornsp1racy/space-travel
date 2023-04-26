@@ -19,8 +19,10 @@ document.addEventListener("scroll", function(event) {
 });
 
 document.addEventListener("mouseover", function(event) {
-  var glowing = document.getElementById("glowing");
-  glowing.style.opacity = 1;
+  var glowing = document.getElementById("glowing") ? document.getElementById("glowing") : null;
+  if(glowing != null){
+    glowing.style.opacity = 1;
+  }
 });
 
 document.addEventListener("mouseout", function(event) {
@@ -29,12 +31,18 @@ document.addEventListener("mouseout", function(event) {
 });
 document.addEventListener("mouseover", function(event) {
   var glowing = document.getElementById("glowing"); // change ID to "glowing"
-  glowing.style.opacity = 1;
+  if(glowing != null){
+    glowing.style.opacity = 1;
+
+  }
 });
 
 document.addEventListener("mouseout", function(event) {
   var glowing = document.getElementById("glowing"); // change ID to "glowing"
-  glowing.style.opacity = 0;
+  if(glowing != null){
+    glowing.style.opacity = 0;
+
+  }
 });
 
 document.addEventListener('mouseout', () => {
