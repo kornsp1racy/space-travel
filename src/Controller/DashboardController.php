@@ -27,10 +27,6 @@ class DashboardController extends AbstractController
     {
 
 
-        // return $this->render('dashboard/index.html.twig', [
-        //     'controller_name' => 'UserDashboardController',
-        // ]);
-
         /**
          * @var User
          */
@@ -39,8 +35,7 @@ class DashboardController extends AbstractController
         $notes = $em->getRepository(Note::class)->findBy(['fk_user' => $user]);
         $selectedTrips = $user->getSelectedTrips();
         $trips = $em->getRepository(Trip::class)->findAll();
-        // dd($user);
-        // dd($notes);
+        
 
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
@@ -115,7 +110,7 @@ class DashboardController extends AbstractController
         $em->flush();
 
 
-        return $this->redirectToRoute('app_dashboard_trips');
+        return $this->redirectToRoute('app_dashboard');
     }
 
     
@@ -142,7 +137,7 @@ class DashboardController extends AbstractController
                 $packingList = new PackingList();
                 $newItem = $doctrine->getRepository(Item::class)->find($si);
 
-                //check whether current selected item is already part of inventory
+                //check whether currently selected item is already part of inventory
                 $duplicate = false;
                 foreach ($userItems as $item) {
                     // dd($item->getItem()->getId(), $si);
