@@ -17,7 +17,6 @@
   box-sizing: border-box;
   font-family: var(--font-family);
 }
-
 /* Buttons */
 .btn-orange {
   color: var(--accent-color-blue);
@@ -313,7 +312,29 @@ footer i {
   }
 }
 /* Landing Page End */
+/* Glow Effect Mouse */
+#pointer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
 
+#glowing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  opacity: 0;
+  filter: blur(20px);
+  pointer-events: none;
+}
 
 /*Dashboard*/
 
