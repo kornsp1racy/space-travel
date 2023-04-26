@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Item;
+use App\Entity\Note;
 use App\Entity\PackingList;
 use App\Entity\Trip;
 use App\Entity\User;
@@ -26,21 +27,21 @@ class DashboardController extends AbstractController
     {
 
 
-        // return $this->render('dashboard/index.html.twig', [
-        //     'controller_name' => 'UserDashboardController',
-        // ]);
-
         /**
          * @var User
          */
         $user = $security->getUser();
         
+        $notes = $em->getRepository(Note::class)->findBy(['fk_user' => $user]);
         $selectedTrips = $user->getSelectedTrips();
         $trips = $em->getRepository(Trip::class)->findAll();
+        
+
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
             'trips' => $trips,
-            'selectedTrips' => $selectedTrips
+            'selectedTrips' => $selectedTrips,
+            'notes' => $notes
         ]);
 
        
@@ -109,7 +110,7 @@ class DashboardController extends AbstractController
         $em->flush();
 
 
-        return $this->redirectToRoute('app_dashboard_trips');
+        return $this->redirectToRoute('app_dashboard');
     }
 
     
@@ -136,7 +137,7 @@ class DashboardController extends AbstractController
                 $packingList = new PackingList();
                 $newItem = $doctrine->getRepository(Item::class)->find($si);
 
-                //check whether current selected item is already part of inventory
+                //check whether currently selected item is already part of inventory
                 $duplicate = false;
                 foreach ($userItems as $item) {
                     // dd($item->getItem()->getId(), $si);

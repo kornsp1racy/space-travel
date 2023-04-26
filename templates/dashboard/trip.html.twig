@@ -1,17 +1,44 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello UserDashboardController!{% endblock %}
+{% set trip = trip.trip %}
+{% block title %}Your
+	{{ trip.destination }}
+	Trip
+{% endblock %}
 
 {% block body %}
-{% set trip = trip.trip %}
-<h1>{{ trip.destination }}</h1>
-
-    <p><a href="/dashboard/trips/{{ id }}/packing_list">Packing List</a></p>
-    <p><a href="/dashboard/trips/{{ id }}/itinerary">Itinerary</a></p>
-
-
-    <p><a href="/dashboard/trips/{{ id }}/remove">Remove Trip</a></p>
-
-    <p><a href="/dashboard/trips">Back</a></p>
-    
+	<style>
+		body {
+			background: var(--main-bg-color);
+			color: white;
+		}
+		.back-arrow {
+			font-size: 1.5rem;
+		}
+		.form-container {
+			border-style: solid;
+			border-color: var(--accent-color-orange) !important;
+		}
+	</style>
+	<div class="">
+		<a class="back-arrow text-decoration-none text-light m-2 p-2 fw-bold" href="/dashboard">
+			<i class="bi bi-arrow-left"></i>
+			Back</a>
+	</div>
+	<div class="form-container container text-center w-50 border rounded p-5 m-5 mx-auto">
+		<h1 class="divider-heading mt-3">Your
+			{{ trip.destination }}
+			Trip</h1>
+		<br>
+		<div>
+			<h3 class="">Add packing List</h3>
+			<a class="btn btn-light btn-orange fw-bold" href="/dashboard/trips/{{ id }}/packing_list">List creator</a>
+		</div>
+		<div class="mt-3">
+			<h3>Add your individual travel itinerary</h3>
+			<a class="btn btn-light btn-orange fw-bold" href="/dashboard/trips/{{ id }}/itinerary">Itinerary</a>
+		</div>
+		<p>
+			<a class="btn btn-danger btn-sm mt-5" href="/dashboard/trips/{{ id }}/remove">Remove Trip</a>
+		</p>
+	</div>
 {% endblock %}
