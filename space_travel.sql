@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2023 at 07:10 PM
+-- Generation Time: Apr 27, 2023 at 01:39 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -87,13 +87,16 @@ CREATE TABLE `itinerary` (
 --
 
 INSERT INTO `itinerary` (`id`, `selected_trip_id`, `day`, `activity`, `restaurant`, `accommodation`) VALUES
-(8, 1, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat'),
 (10, 2, 'Wednesday', 'Cultural Experiences', 'Kentucky Fried Chicken', 'Greenhouse'),
 (13, 8, 'Saturaday', 'Zero-gravity Activities', 'Wendy\'s', 'Greenhouse'),
 (14, 9, 'Sunday', 'Admiring Stars', 'Subway', 'Space Shuttle'),
-(34, 1, 'Friday', 'Exploration', 'Dominos', 'Underground Habitat'),
-(36, 1, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat'),
-(39, 1, 'Monday', 'Earth Observation', 'Kentucky Fried Chicken', 'Underground Habitat');
+(48, 21, 'wednesday', 'Science Experiments', 'Taco Bell', 'Greenhouse'),
+(49, 23, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat'),
+(51, 23, 'Tuesday', 'Adventure Sports', 'Dominos', 'Aurora Space Station'),
+(52, 23, 'Monday', 'Exploration', 'Dominos', 'Underground Habitat'),
+(53, 23, 'Monday', 'Exploration', 'McDonalds', 'Greenhouse'),
+(54, 22, 'wednesday', 'Science Experiments', 'Dominos', 'Greenhouse'),
+(55, 22, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat');
 
 -- --------------------------------------------------------
 
@@ -145,8 +148,7 @@ CREATE TABLE `note` (
 
 INSERT INTO `note` (`id`, `fk_user_id`, `date`, `title`, `content`, `image`, `likes`) VALUES
 (1, 1, '2023-04-12', 'Best trip ever', 'Day 1:\r\nAfter months of training and preparation, I can hardly believe that I am finally here on the Moon! The journey was long and uncomfortable, but it was all worth it to see the Earth rise over the horizon of this desolate landscape.\r\n\r\nThe first thing I noticed when I stepped out of the spacecraft was the silence. There is no sound here, no wind, no rustling of leaves, just an eerie stillness that is both peaceful and unnerving.\r\n\r\nWe spent the day exploring the landing site and setting up our equipment. Walking on the Moon is an incredible experience - the low gravity makes every step feel like you\'re bouncing and floating at the same time. It\'s going to take some getting used to, but I think I\'m going to like it here.', 'https://s.w-x.co/util/image/w/de-spacexdpa.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60', 25),
-(2, 2, '2023-06-05', 'Even better', 'Day 2:\r\nToday we ventured further away from the landing site and explored some of the craters and valleys nearby. The landscape is unlike anything I\'ve ever seen before - it\'s both barren and beautiful at the same time. The colors are muted, but there are subtle shades of grey, brown, and even purple in the rocks and dust.\r\n\r\nI couldn\'t help but feel a sense of awe as I looked up at the sky and saw the stars shining so brightly. There\'s no atmosphere to interfere with the view, so the stars are incredibly clear and vivid.\r\n\r\nWe also had some fun playing around in the low gravity - we tried jumping as high as we could and even had a few impromptu races. It\'s amazing how much you can do with just a little bit of effort here.', 'https://i.ds.at/iU_cPw/rs:fill:1600:0/plain/2022/04/13/mondimpakt.jpg', 44),
-(3, 3, '2023-03-08', 'out of ideas', 'Day 3:\r\nToday we conducted some scientific experiments and took some samples of the rocks and soil. It\'s incredible to think that these samples have been untouched for billions of years - they could hold clues to the origins of our solar system and the universe itself.\r\n\r\nWe also had some time to just relax and take in the view. It\'s so peaceful here, without the noise and chaos of life on Earth. I feel like I could stay here forever, just gazing out at the landscape and pondering the mysteries of the universe.', 'https://s.w-x.co/util/image/w/de-mond-astronaut-GettyImages-1353996620%20Kopie.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60', 0);
+(2, 2, '2023-06-05', 'Even better', 'Day 2:\r\nToday we ventured further away from the landing site and explored some of the craters and valleys nearby. The landscape is unlike anything I\'ve ever seen before - it\'s both barren and beautiful at the same time. The colors are muted, but there are subtle shades of grey, brown, and even purple in the rocks and dust.\r\n\r\nI couldn\'t help but feel a sense of awe as I looked up at the sky and saw the stars shining so brightly. There\'s no atmosphere to interfere with the view, so the stars are incredibly clear and vivid.\r\n\r\nWe also had some fun playing around in the low gravity - we tried jumping as high as we could and even had a few impromptu races. It\'s amazing how much you can do with just a little bit of effort here.', 'https://i.ds.at/iU_cPw/rs:fill:1600:0/plain/2022/04/13/mondimpakt.jpg', 44);
 
 -- --------------------------------------------------------
 
@@ -165,8 +167,6 @@ CREATE TABLE `packing_list` (
 --
 
 INSERT INTO `packing_list` (`id`, `item_id`, `selected_trip_id`) VALUES
-(1, 5, 1),
-(3, 27, 1),
 (4, 3, 2),
 (6, 24, 2),
 (7, 3, 2),
@@ -176,13 +176,16 @@ INSERT INTO `packing_list` (`id`, `item_id`, `selected_trip_id`) VALUES
 (14, 3, 2),
 (15, 3, 2),
 (16, 2, 2),
-(20, 24, 1),
-(21, 4, 1),
 (28, 2, 8),
 (29, 4, 8),
 (30, 15, 10),
-(33, 1, 1),
-(34, 3, 1);
+(46, 13, 21),
+(47, 14, 21),
+(50, 12, 21),
+(51, 5, 22),
+(52, 6, 22),
+(53, 27, 22),
+(54, 3, 15);
 
 -- --------------------------------------------------------
 
@@ -201,12 +204,16 @@ CREATE TABLE `selected_trip` (
 --
 
 INSERT INTO `selected_trip` (`id`, `user_id`, `trip_id`) VALUES
-(1, 3, 6),
 (2, NULL, 3),
 (8, 2, 5),
 (9, 2, 2),
 (10, 2, 9),
-(12, 5, 2);
+(14, 4, 2),
+(15, 4, 4),
+(16, 4, 3),
+(21, 3, 5),
+(22, 3, 6),
+(23, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -279,20 +286,18 @@ CREATE TABLE `user` (
   `last_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `passport` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `address`, `passport`, `phone`, `image`) VALUES
-(1, 'admin@email.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Adrian', 'Min', 'Straße 3, 10015 Berlin', 'pass.jpg', '1234556', 'pic.png'),
-(2, 'mustermann@email.com', '[\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Max', 'Mustermann', 'Allee 15, 89005 München', 'pp.jpg', '2345435', 'profil.jpeg'),
-(3, 'some@dude.com', '[]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'the', 'dude', 'wtf 123', 'pp.jpg', '123123123', 'profile.jpg'),
-(4, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Ad', 'Min', 'dsfjjf', 'dsfds.jpg', '324345435', '4wrdfg.jpg'),
-(5, 'Anon@nym.com', '[]', '$2y$13$q4MWlTnIS/NaYuynCeE9.OmD5Ou.LnA2NUAupQb9AVEqLwTljQGnG', 'Anon', 'Nym', NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `address`, `passport`, `phone`) VALUES
+(1, 'admin@email.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Adrian', 'Min', 'Straße 3, 10015 Berlin', 'pass.jpg', '1234556'),
+(2, 'mustermann@email.com', '[\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Max', 'Mustermann', 'Allee 15, 89005 München', 'pp.jpg', '2345435'),
+(3, 'some@dude.com', '[\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'the', 'dude!', 'wtf 123', 'pp.jpg', '111111111'),
+(4, 'admin@gmail.com', '[\"ROLE_ADMIN\",\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Ad', 'Min', 'dsfjjf', 'dsfds.jpg', '454535');
 
 -- --------------------------------------------------------
 
@@ -405,7 +410,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `itinerary`
 --
 ALTER TABLE `itinerary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `mandatory_item_trip`
@@ -423,19 +428,19 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT for table `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `packing_list`
 --
 ALTER TABLE `packing_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `selected_trip`
 --
 ALTER TABLE `selected_trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `trip`
@@ -447,7 +452,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_reward`
