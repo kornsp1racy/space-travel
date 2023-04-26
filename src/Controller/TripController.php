@@ -59,6 +59,6 @@ class TripController extends AbstractController
         $em->flush();
 
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_dashboard');
     }
 }

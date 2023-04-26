@@ -21,7 +21,7 @@ class ItineraryType extends AbstractType
                 'Friday' => 'Friday',
                 'Saturday' => 'Saturday',
                 'Sunday' => 'Sunday',
-            ]])
+            ]], ["attr" =>["class" => "m-1 form-control", "placeholder" => ""]])
             ->add('activity', ChoiceType::class, ['choices' => [
                 'Exploration' => 'Exploration',
                 'Adventure Sports' => 'Adventure Sports',
@@ -30,7 +30,7 @@ class ItineraryType extends AbstractType
                 'Science Experiments' => 'Science Experiments',
                 'Zero-gravity Activities' => 'Zero-gravity Activities',
                 'Admiring Stars' => 'Admiring Stars',
-            ]])
+            ]], ["attr" =>["class" => "m-1 form-control", "placeholder" => ""]])
             ->add('restaurant', ChoiceType::class, ['choices' => [
                 'McDonalds' => 'McDonalds',
                 'Burger King' => 'Burger King',
@@ -39,14 +39,14 @@ class ItineraryType extends AbstractType
                 'Taco Bell' => 'Taco Bell',
                 'Wendys' => 'Wendys',
                 'Subway' => 'Subway',
-            ]])
+            ]], ["attr" =>["class" => "m-1 form-control", "placeholder" => ""]])
             ->add('accommodation', ChoiceType::class, ['choices' => [
                 'Underground Habitat' => 'Underground Habitat',
                 'Modular Habitat' => 'Modular Habitat',
                 'Greenhouse' => 'Greenhouse',
                 'Aurora Space Station' => 'Aurora Space Station',
                 'Space Shuttle' => 'Space Shuttle'
-            ]])
+            ]], ["attr" =>["class" => "m-1 form-control", "placeholder" => ""]])
             // ->add('day_two', ChoiceType::class, ['choices' => [
             //     'Monday' => 'Monday',
             //     'Tuesday' => 'Tuesday',

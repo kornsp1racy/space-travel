@@ -10,9 +10,9 @@
     <!--Navbar-->
 
 
-    <nav class="navbar  navbar-expand-lg " style="background-color:black">
+    <nav class="navbar navbar-expand-lg " style="background-color:black">
         <div class="container-fluid">
-            <a class="navbar-brand"href="/"><i class="bi bi-rocket text-light"></i></a>
+            <a class="navbar-brand"href="#"><i class="bi bi-rocket text-light"></i></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,17 +24,11 @@
               </li>
               {% endif %}
               <li class="nav-item">
-                <a class="nav-link text-light" href="/dashboard/trips">Your Trips</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="/dashboard/trip_packing">Packing list</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link text-light" href="/note">Trip journal</a>
               </li>
             </ul>
             <form class="d-flex" role="search">
-              
+              <a class="btn btn-light btn-orange fw-bold mx-1" href="/logout">Logout</a>
               <a class="btn btn-outline-light" href="/dashboard/details"><i class="bi bi-person"></i></a>
             </form>
           </div>
@@ -54,10 +48,24 @@
     </div>
 
     <!--Bootstrap Cards for the trips-->
+    <div class="container">
+        <h1>Your Trips</h1>
+        {% set trip_id = 0 %}
+        {% for trip in selectedTrips %}
+                    {% set trip = trip.trip %}
+        <div style="border: 2px solid black; width: 150px; text-align: center;">
+            <h3>{{ trip.name }}</h3>
+            <p>{{ trip.destination }}</p>
+            <p><a href="/dashboard/trips/{{ trip_id }}">Manage</a></p>
+        </div>
+        {% set trip_id = trip_id + 1 %}
+        {% endfor %}
+        
+    </div>
 
     <section id="desti">
         <div class="container">
-            <h5 class="section-title h1 py-3" style="text-align:center; color:lightblue">Our  trips</h5>
+            <h5 class="section-title h1 py-3" style="text-align:center; color:lightblue">Our trips</h5>
             <div class="row">
                 
         
@@ -88,7 +96,7 @@
                                         <p>Your Travel Partner: {{trip.host}}</p>
                                         <p>Award: {{trip.award}}</p>
                                         
-                                        <button href="#" class="btn btn-success text-light">Details</button>
+                                        <a href="/trips/{{ trip.id }}" class="btn btn-success text-light">Details</a>
                                         
                                       
                                     </div>
@@ -102,21 +110,6 @@
 
             </div>
         </div>
-    </section>
-
-    <!--Journal-->
-    <section id="desti">
-       <a href="" style="text-decoration: none;"> <h2 class="h2">Click hier and plan Your day like this</h2> </a>
-        <div class = "container_day">
-            <input type="text" placeholder = "Enter task" id = "userinput"> 
-            <button value = "Enter" id= "enterButton"><strong>Enter</strong></button>
-        </div>
-        <div class = "todolist">
-            <ol>
-                <!-- <li>heyy</li> -->
-            </ol>
-        </div>
-       
     </section>
    
     <!--Footer-->
