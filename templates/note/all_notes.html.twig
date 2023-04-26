@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NoteController!{% endblock %}
+
+{% block body %}
+
+<div class="d-flex flex-wrap gap-2">
+    {% for note in notes %}    
+        <div class="border d-flex flex-column justify-content-between" style="width: 400px;">
+            <h3 class="text-success text-center">{{ note.title }}</h3>
+            <div class="">{{ note.content }}</div>
+            <img class="w-50" src="uploads/{{ note.image }}"{{ note.content }} alt="{{note.title}}">
+            <div class="">{{ note.likes }}</div>
+            {% if note.fkuser == user %}
+                <div><a class="text-danger" href="/allnotes/{{ note.id }}/remove">X</a></div>
+            {% endif %}
+            
+        </div>
+    {% else %}
+    <p>No notes available</p>
+    {% endfor %}
+</div>
+<div><a href="/note">Create Entry</a></div>
+<div><a href="/dashboard">Back</a></div>
+
+{% endblock %}

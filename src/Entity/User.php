@@ -57,11 +57,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: SelectedTrip::class, cascade: ['persist', 'remove'])]
     private Collection $selectedTrips;
 
+    #[ORM\OneToMany(mappedBy: 'fk_user', targetEntity: Note::class, cascade: ['persist', 'remove'])]
+    private Collection $notes;
+
 
     public function __construct()
     {
         // $this->trip = new ArrayCollection();
         $this->selectedTrips = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -254,6 +258,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($selectedTrip->getUser() === $this) {
                 $selectedTrip->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
+    /**
+     * @return Collection<int, SelectedTrip>
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes->add($note);
+            $note->setFkUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->removeElement($note)) {
+            // set the owning side to null (unless already changed)
+            if ($note->getFkUser() === $this) {
+                $note->setFkUser(null);
             }
         }
 
