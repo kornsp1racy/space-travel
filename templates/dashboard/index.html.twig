@@ -3,14 +3,6 @@
 {% block title %}Welcome{% endblock %}
 
 {% block body %}
-{% if is_granted('ROLE_ADMIN') %}
-        <p><a href="/users">Manage Users</a></p>
-{% endif %}
-    
-  
-
-    
-    
 
 <body>
 
@@ -26,6 +18,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if is_granted('ROLE_ADMIN') %}
+              <li class="nav-item">
+                <a class="nav-link text-danger" href="/users">Manage Users</a>
+              </li>
+              {% endif %}
               <li class="nav-item">
                 <a class="nav-link text-light" href="/dashboard/trips">Your Trips</a>
               </li>
@@ -38,7 +35,7 @@
             </ul>
             <form class="d-flex" role="search">
               
-              <a class="btn btn-outline-light" href="href="/dashboard/details""><i class="bi bi-person"></i></a>
+              <a class="btn btn-outline-light" href="/dashboard/details"><i class="bi bi-person"></i></a>
             </form>
           </div>
         </div>

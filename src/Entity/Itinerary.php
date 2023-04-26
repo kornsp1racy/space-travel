@@ -23,35 +23,35 @@ class Itinerary
     private ?string $restaurant = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $accomodation = null;
+    private ?string $accommodation = null;
 
-    #[ORM\ManyToOne(targetEntity: SelectedTrip::class, inversedBy: 'itinerary', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: SelectedTrip::class, inversedBy: 'itinerary', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?SelectedTrip $selectedTrip = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $day_two = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $day_two = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $activity_two = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $activity_two = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $restaurant_two = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $restaurant_two = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $accommodation_two = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $accommodation_two = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $day_three = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $day_three = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $activity_three = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $activity_three = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $restaurant_three = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $restaurant_three = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $accomodation_three = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $accommodation_three = null;
 
     public function getId(): ?int
     {
@@ -94,14 +94,14 @@ class Itinerary
         return $this;
     }
 
-    public function getAccomodation(): ?string
+    public function getAccommodation(): ?string
     {
-        return $this->accomodation;
+        return $this->accommodation;
     }
 
-    public function setAccomodation(string $accomodation): self
+    public function setAccommodation(string $accomodation): self
     {
-        $this->accomodation = $accomodation;
+        $this->accommodation = $accomodation;
 
         return $this;
     }
@@ -118,99 +118,99 @@ class Itinerary
         return $this;
     }
 
-    public function getDayTwo(): ?string
-    {
-        return $this->day_two;
-    }
+    // public function getDayTwo(): ?string
+    // {
+    //     return $this->day_two;
+    // }
 
-    public function setDayTwo(string $day_two): self
-    {
-        $this->day_two = $day_two;
+    // public function setDayTwo(string $day_two): self
+    // {
+    //     $this->day_two = $day_two;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getActivityTwo(): ?string
-    {
-        return $this->activity_two;
-    }
+    // public function getActivityTwo(): ?string
+    // {
+    //     return $this->activity_two;
+    // }
 
-    public function setActivityTwo(string $activity_two): self
-    {
-        $this->activity_two = $activity_two;
+    // public function setActivityTwo(string $activity_two): self
+    // {
+    //     $this->activity_two = $activity_two;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getRestaurantTwo(): ?string
-    {
-        return $this->restaurant_two;
-    }
+    // public function getRestaurantTwo(): ?string
+    // {
+    //     return $this->restaurant_two;
+    // }
 
-    public function setRestaurantTwo(string $restaurant_two): self
-    {
-        $this->restaurant_two = $restaurant_two;
+    // public function setRestaurantTwo(string $restaurant_two): self
+    // {
+    //     $this->restaurant_two = $restaurant_two;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getAccommodationTwo(): ?string
-    {
-        return $this->accommodation_two;
-    }
+    // public function getAccommodationTwo(): ?string
+    // {
+    //     return $this->accommodation_two;
+    // }
 
-    public function setAccommodationTwo(string $accommodation_two): self
-    {
-        $this->accommodation_two = $accommodation_two;
+    // public function setAccommodationTwo(string $accommodation_two): self
+    // {
+    //     $this->accommodation_two = $accommodation_two;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getDayThree(): ?string
-    {
-        return $this->day_three;
-    }
+    // public function getDayThree(): ?string
+    // {
+    //     return $this->day_three;
+    // }
 
-    public function setDayThree(string $day_three): self
-    {
-        $this->day_three = $day_three;
+    // public function setDayThree(string $day_three): self
+    // {
+    //     $this->day_three = $day_three;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getActivityThree(): ?string
-    {
-        return $this->activity_three;
-    }
+    // public function getActivityThree(): ?string
+    // {
+    //     return $this->activity_three;
+    // }
 
-    public function setActivityThree(string $activity_three): self
-    {
-        $this->activity_three = $activity_three;
+    // public function setActivityThree(string $activity_three): self
+    // {
+    //     $this->activity_three = $activity_three;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getRestaurantThree(): ?string
-    {
-        return $this->restaurant_three;
-    }
+    // public function getRestaurantThree(): ?string
+    // {
+    //     return $this->restaurant_three;
+    // }
 
-    public function setRestaurantThree(string $restaurant_three): self
-    {
-        $this->restaurant_three = $restaurant_three;
+    // public function setRestaurantThree(string $restaurant_three): self
+    // {
+    //     $this->restaurant_three = $restaurant_three;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getAccomodationThree(): ?string
-    {
-        return $this->accomodation_three;
-    }
+    // public function getAccommodationThree(): ?string
+    // {
+    //     return $this->accommodation_three;
+    // }
 
-    public function setAccomodationThree(string $accomodation_three): self
-    {
-        $this->accomodation_three = $accomodation_three;
+    // public function setAccommodationThree(string $accomodation_three): self
+    // {
+    //     $this->accommodation_three = $accomodation_three;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }

@@ -6,7 +6,7 @@
 {% block body %}
 	<style>
 		body {
-			background: var(--main-bg-color);
+			background: black;
 			color: white;
 		}
 		.back-arrow {
@@ -24,6 +24,7 @@
 	</div>
     {# Form #}
 	<div class="form-container container text-center m-5 p-5 border rounded bg-dark w-50 mx-auto">
+	<h1 class="divider-heading text-center my-3">Personal Details</h1>
 		{{ form_start(form) }}
 	<div class="row mb-3">
 		{{ form_label(form.email, "Email", {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}

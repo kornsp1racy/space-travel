@@ -20,17 +20,17 @@ class noteFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('content', TextareaType::class)
+            ->add('title', TextType::class, ["attr" =>["class" => "m-1 form-control", "placeholder" => ""]])
+            ->add('content', TextareaType::class, ["attr" =>["class" => "m-1 form-control"]])
            
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
-            ])
+            ], ["attr" =>["class" => "m-1 form-control"]])
             ->add('likes', IntegerType::class,[
                 'label' => 'How do you rate your experience out of 100?',
-            ])
+            ], ["attr" =>["class" => "m-1 form-control", "placeholder" => "How do you rate your experience out of 100?"]])
             ->add('image', FileType::class, [
                 'label' => 'Picture (image file)',
 
@@ -54,11 +54,11 @@ class noteFormType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid picture file (png, jpeg, jpg)',
                     ])
                 ],
-            ])
+            ], ["attr" =>["class" => "m-1 form-control"]])
             // ...
         
 
-            ->add('save', SubmitType::class)
+            ->add('save', SubmitType::class, ["attr" =>["class" => "save btn btn-light btn-orange fw-bold m-3"]])
         ;
     }
     public function configureOptions(OptionsResolver $resolver): void

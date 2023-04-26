@@ -20,9 +20,9 @@ class HomeController extends AbstractController
 
         $trips = $doctrine->getRepository(Trip::class)->findAll();
 
-        if ($security->isGranted('ROLE_USER')) {
-            return $this->redirectToRoute('app_dashboard');
-        }
+        // if ($security->isGranted('ROLE_USER')) {
+        //     return $this->redirectToRoute('app_dashboard');
+        // }
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
