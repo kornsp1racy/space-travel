@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2023 at 09:50 AM
+-- Generation Time: Apr 27, 2023 at 11:41 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -65,7 +65,8 @@ INSERT INTO `item` (`id`, `name`) VALUES
 (24, 'Surfboard'),
 (25, 'Spikes'),
 (26, 'Pickaxe'),
-(27, 'Telescope');
+(27, 'Telescope'),
+(28, 'Goggles');
 
 -- --------------------------------------------------------
 
@@ -95,8 +96,8 @@ INSERT INTO `itinerary` (`id`, `selected_trip_id`, `day`, `activity`, `restauran
 (51, 23, 'Tuesday', 'Adventure Sports', 'Dominos', 'Aurora Space Station'),
 (52, 23, 'Monday', 'Exploration', 'Dominos', 'Underground Habitat'),
 (53, 23, 'Monday', 'Exploration', 'McDonalds', 'Greenhouse'),
-(54, 22, 'wednesday', 'Science Experiments', 'Dominos', 'Greenhouse'),
-(55, 22, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat');
+(55, 22, 'Monday', 'Exploration', 'McDonalds', 'Underground Habitat'),
+(56, 22, 'Wednesday', 'Exploration', 'McDonalds', 'Underground Habitat');
 
 -- --------------------------------------------------------
 
@@ -267,6 +268,13 @@ INSERT INTO `trip_item` (`trip_id`, `item_id`) VALUES
 (6, 5),
 (6, 6),
 (6, 27),
+(7, 2),
+(7, 11),
+(7, 17),
+(7, 21),
+(7, 25),
+(7, 27),
+(7, 28),
 (8, 5),
 (8, 23),
 (8, 24),
@@ -405,13 +413,13 @@ ALTER TABLE `user_reward`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `itinerary`
 --
 ALTER TABLE `itinerary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `mandatory_item_trip`
