@@ -17,6 +17,16 @@
 			background-color: var(--accent-color-orange);
 			height: 50px;
 		}
+		.btn-remove {
+			height: 20px;
+			width: 20px;
+		}
+		.icon-remove {
+			font-size: 1rem;
+			position: relative;
+			left: 0;
+			bottom: 0;
+		}
 	</style>
 
 	<body>
@@ -94,7 +104,7 @@
 								<h2 class="card-title note-title">{{ note.title }}</h2>
 								<p class="card-title p-1">{{ note.content }}</p>
 							</div>
-							<div><a class="text-danger" href="/dashboard/notes/{{ counter }}/remove">X</a></div>
+							<div class="ms-auto mb-2"><a class="text-light btn btn-danger btn-sm" href="/dashboard/notes/{{ counter }}/remove"><i class="icon-remove bi bi-trash"></i></a></div>
 						</div>
 						{% set counter = counter + 1 %}
 					{% endfor %}
