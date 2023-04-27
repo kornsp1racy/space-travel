@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+    <!-- Style -->
 	<style>
 		body {
 			background-color: var(--main-bg-color);
@@ -12,16 +13,15 @@
 		.note-title {
 			color: var(--accent-color-orange);
 		}
-        .navbar-dashboard {
-            background-color: var(--accent-color-orange);
-            height: 50px;
-        }
+		.navbar-dashboard {
+			background-color: var(--accent-color-orange);
+			height: 50px;
+		}
 	</style>
+
 	<body>
 
-
 		<!--Navbar-->
-
 		<nav class="navbar-dashboard navbar navbar-expand-lg">
 			<div class="container-fluid">
 				<a class="navbar-brand" href=""><img class="logo-landing" src="images/linkedin_banner_image_1.png" alt=""></a>
@@ -49,10 +49,7 @@
 			</div>
 		</nav>
 
-
 		<!--Hero image-->
-
-
 		<div class="bg-image shadow">
 			<div class="container-fluid">
 				<div class="text-center text-align-center align-items-center text-white text">
@@ -60,7 +57,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<!--Your Trips-->
 		{% if selectedTrips.count > 0 %}
@@ -77,171 +73,170 @@
 								<h4 class="card-title">{{ trip.destination }}</h4>
 								<a class="btn btn-light btn-orange btn-sm fw-bold" href="/dashboard/trips/{{ trip_id }}">Manage</a>
 							</div>
-
 						</div>
 						{% set trip_id = trip_id + 1 %}
 					{% endfor %}
 				</div>
 			</div>
 		{% endif %}
+
 		<!-- Your Notes -->
-	</body>
-</div>
-{% if notes %}
-	<div class="your-notes">
-		<h1 class="divider-heading divider glow line">Your Journal</h1>
-		<div class="row d-flex justify-content-around py-3">
-			{% for note in notes %}
-				<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12 text-center border rounded m-3" style="width: 35rem;">
-					<img class="card-img-top" src="{{ note.image }}" alt="Card image cap">
-					<div class="card-body mt-3">
-						<p class="card-title opacity-75">{{ note.date|date("F jS Y") }}</p>
-						<h2 class="card-title note-title">{{ note.title }}</h2>
-						<p class="card-title p-1">{{ note.content }}</p>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-	</div>
-{% endif %}
-
-
-<section id="desti">
-	<h1 class="divider-heading divider glow line">Our Trips</h1>
-	<div class="container">
-
-		<div class="row">
-
-
-			{% for trip in trips %}
-
-
-				<!-- Trips -->
-				<div class="col-xs-12 col-sm-6 col-md-4 mb-5">
-					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-						<div class="mainflip">
-							<div class="frontside">
-								<div class="card" style="background: #282d32;">
-									<div class="card-body text-center">
-										<p><img class=" img-fluid" src={{trip.image}} alt="card image"></p>
-										<h4 class="card-title">
-											{{trip.name}}</h4>
-										<p class="card-text">{{trip.characteristics}}</p>
-										<a href="#" class="btn btn-xl">
-											<i class="bi bi-award text-light">{{trip.award}}</i>
-										</a>
-									</div>
-								</div>
+		{% if notes %}
+			<div class="your-notes">
+				<h1 class="divider-heading divider glow line">Your Journal</h1>
+				<div class="row d-flex justify-content-around py-3">
+					{% for note in notes %}
+						<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12 text-center border rounded m-3" style="width: 35rem;">
+							<img class="card-img-top" src="{{ note.image }}" alt="Card image cap">
+							<div class="card-body mt-3">
+								<p class="card-title opacity-75">{{ note.date|date("F jS Y") }}</p>
+								<h2 class="card-title note-title">{{ note.title }}</h2>
+								<p class="card-title p-1">{{ note.content }}</p>
 							</div>
-							<div class="backside ">
-								<div class="card" style="background:  #282d32;">
-									<div class="card-body text-center ">
-										<h4 class="card-title">{{trip.destination}}</h4>
-										<p class="card-text">{{trip.characteristics}}</p>
-										<p>Duration in Days:
-											{{trip.duration}}</p>
-										<p>Your Travel Partner:
-											{{trip.host}}</p>
-										<p>Award:
-											{{trip.award}}</p>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
 
-										<a href="/trips/{{ trip.id }}" class="btn btn-success text-light">Details</a>
-
-
+        <!-- Trips -->
+		<section id="desti">
+			<h1 class="divider-heading divider glow line">Our Trips</h1>
+			<div class="container">
+				<div class="row">
+					{% for trip in trips %}
+						<!-- Trips -->
+						<div class="col-xs-12 col-sm-6 col-md-4 mb-5">
+							<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+								<div class="mainflip">
+									<div class="frontside">
+										<div class="card" style="background: #282d32;">
+											<div class="card-body text-center">
+												<p><img class=" img-fluid" src={{trip.image}} alt="card image"></p>
+												<h4 class="card-title">
+													{{trip.name}}</h4>
+												<p class="card-text">{{trip.characteristics}}</p>
+												<a href="#" class="btn btn-xl">
+													<i class="bi bi-award text-light">{{trip.award}}</i>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="backside ">
+										<div class="card" style="background:  #282d32;">
+											<div class="card-body text-center ">
+												<h4 class="card-title">{{trip.destination}}</h4>
+												<p class="card-text">{{trip.characteristics}}</p>
+												<p>Duration in Days:
+													{{trip.duration}}</p>
+												<p>Your Travel Partner:
+													{{trip.host}}</p>
+												<p>Award:
+													{{trip.award}}</p>
+												<a href="/trips/{{ trip.id }}" class="btn btn-success text-light">Details</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					{% endfor %}
 				</div>
-			{% endfor %}
-
-
-		</div>
-	</div>
-</section>
-<footer class="footer-landing text-center">
-	<a href="/team"><i class="bi bi-facebook p-4 text-light footer-icon"></i></a>
-	<a href="/team"><i class="bi bi-twitter p-4 text-light footer-icon"></i></a>
-	<a href="/team"><i class="bi bi-instagram p-4 text-light footer-icon"></i></a>
-	<p class="p-5 copyright">© 2023 Copyright Astro Tours</p>
-</footer>
-<!--Footer-->
-{# <footer class="ft">
-	<div class="footer-dark">
-		<footer>
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-md-3 item">
-						<h3>Services</h3>
-						<ul>
-							<li><a href="#">Destinations</a></li>
-							<li><a href="#">Travel Buddys</a></li>
-							<li><a href="#">Day2Day</a></li>
-						</ul>
-					</div>
-					<div class="col-sm-6 col-md-3 item">
-						<h3>About</h3>
-						<ul>
-							<li><a href="#">Company</a></li>
-							<li><a href="#">Team</a></li>
-
-						</ul>
-					</div>
-					<div class="col-md-6 item text">
-						<h3>Our website Name</h3>
-						<p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
-					</div>
-					<div class="col item social">
-						<a href="#">
-							<i class="bi bi-facebook"></i>
-						</a>
-						<a href="#">
-							<i class="bi bi-instagram"></i>
-						</a>
-						<a href="#">
-							<i class="bi bi-twitter"></i>
-						</a>
-						<a href="#">
-							<i class="bi bi-snapchat"></i>
-						</a>
-					</div>
-				</div>
-				<p class="copyright">Company Name © 2023</p>
 			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="footer-landing text-center">
+			<a href="/team">
+				<i class="bi bi-facebook p-4 text-light footer-icon"></i>
+			</a>
+			<a href="/team">
+				<i class="bi bi-twitter p-4 text-light footer-icon"></i>
+			</a>
+			<a href="/team">
+				<i class="bi bi-instagram p-4 text-light footer-icon"></i>
+			</a>
+			<p class="p-5 copyright">© 2023 Copyright Astro Tours</p>
 		</footer>
-	</div>
+		<button type="button" class="btn" id="btn-back-to-top">
+			<i class="back-to-top-icon bi bi-arrow-up-circle-fill"></i>
+		</button>
+		<script type="text/javascript" src="/public/js/planner.js"></script>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+</body>{% endblock %}
 
-</footer> #}
-<button type="button" class="btn" id="btn-back-to-top">
-	<i class="back-to-top-icon bi bi-arrow-up-circle-fill"></i>
-</button>
-<script type="text/javascript" src="/public/js/planner.js"></script></body><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script></body></html>{% endblock %}
-		{# <nav class="navbar navbar-expand-lg " style="background-color:black">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">
-					<i class="bi bi-rocket text-light"></i>
-				</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						{% if is_granted('ROLE_ADMIN') %}
-							<li class="nav-item">
-								<a class="nav-link text-danger" href="/users">Manage Users</a>
-							</li>
-						{% endif %}
-						<li class="nav-item">
-							<a class="nav-link text-light" href="/note">Trip journal</a>
-						</li>
-					</ul>
-					<form class="d-flex" role="search">
-						<a class="btn btn-light btn-orange fw-bold mx-1" href="/logout">Logout</a>
-						<a class="btn btn-outline-light" href="/dashboard/details">
-							<i class="bi bi-person"></i>
-						</a>
-					</form>
+{# < class="ft">
+		<div class="footer-dark">
+			<footer>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 col-md-3 item">
+							<h3>Services</h3>
+							<ul>
+								<li><a href="#">Destinations</a></li>
+								<li><a href="#">Travel Buddys</a></li>
+								<li><a href="#">Day2Day</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-6 col-md-3 item">
+							<h3>About</h3>
+							<ul>
+								<li><a href="#">Company</a></li>
+								<li><a href="#">Team</a></li>
+	
+							</ul>
+						</div>
+						<div class="col-md-6 item text">
+							<h3>Our website Name</h3>
+							<p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+						</div>
+						<div class="col item social">
+							<a href="#">
+								<i class="bi bi-facebook"></i>
+							</a>
+							<a href="#">
+								<i class="bi bi-instagram"></i>
+							</a>
+							<a href="#">
+								<i class="bi bi-twitter"></i>
+							</a>
+							<a href="#">
+								<i class="bi bi-snapchat"></i>
+							</a>
+						</div>
+					</div>
+					<p class="copyright">Company Name © 2023</p>
 				</div>
-			</div>
-		</nav> #}
+			</footer>
+		</div>
+	
+	
+							<div class="container-fluid">
+								<a class="navbar-brand" href="#">
+									<i class="bi bi-rocket text-light"></i>
+								</a>
+								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="navbar-toggler-icon"></span>
+								</button>
+								<div class="collapse navbar-collapse" id="navbarSupportedContent">
+									<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+										{% if is_granted('ROLE_ADMIN') %}
+											<li class="nav-item">
+												<a class="nav-link text-danger" href="/users">Manage Users</a>
+											</li>
+										{% endif %}
+										<li class="nav-item">
+											<a class="nav-link text-light" href="/note">Trip journal</a>
+										</li>
+									</ul>
+									<form class="d-flex" role="search">
+										<a class="btn btn-light btn-orange fw-bold mx-1" href="/logout">Logout</a>
+										<a class="btn btn-outline-light" href="/dashboard/details">
+											<i class="bi bi-person"></i>
+										</a>
+									</form>
+								</div>
+							</div>
+						</nav> #}

@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	<!-- Style -->
 	<style>
 		body {
 			background: var(--main-bg-color);
@@ -30,7 +31,8 @@
       bottom: 5px;
     }
 	</style>
-	{# {% set trip = trip.trip %} #}
+
+	<!-- Back Button -->
 	<div class="">
 		<a class="back-arrow text-decoration-none text-light m-2 p-2 fw-bold" href="/dashboard/trips/{{ id }}">
 			<i class="bi bi-arrow-left"></i>
@@ -40,11 +42,11 @@
 	<div class="form-container container text-center w-50 border rounded p-5 m-5 mx-auto">
 		<h1 class="divider-heading my-3">{{ selectedtrip.trip.destination }}
 			Packing List</h1>
+
+		<!-- Form Packing List Creator -->
 		<form method="post">
-
-
 			<h3>Available Items</h3>
-			<p class="suggested-items">(Suggested items for
+			<p class="suggested-items opacity-75">(Suggested items for
 				{{ selectedtrip.trip.destination }}
 				are preselected. Please consider bringing those.)</p>
 			<select class="form-control w-50 mx-auto" name="selectedItems[]" multiple>
@@ -59,10 +61,11 @@
 				{% endfor %}
 			</select>
 
-
+			<!-- Pack Button -->
 			<p><input class="btn btn-light btn-orange fw-bold m-3" type="submit" value="Pack"></p>
 		</form>
 
+		<!-- Packed Items -->
 		<div class="mt-5">
 			{% if userItems %}
 				<h5 class="mb-3">Your packed items</h5>
@@ -76,12 +79,11 @@
 						</div>
 					{% endfor %}
 				</div>
+			<!-- no items packed -->
 			{% else %}
 				<p>You haven't packed any items for this trip yet</p>
-
 			{% endif %}
 		</div>
 	</div>
-
 
 {% endblock %}

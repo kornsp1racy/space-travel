@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body %}
+	<!-- Style -->
 	<style>
 		body {
 			background: var(--main-bg-color);
@@ -18,27 +19,101 @@
 			border-style: solid;
 			border-color: var(--accent-color-orange) !important;
 		}
+		.btn-remove {
+			height: 20px;
+			width: 20px;
+		}
+		.icon-remove {
+			font-size: 0.8rem;
+			position: relative;
+			left: -5px;
+			bottom: 5px;
+		}
 	</style>
+
+	<!-- Back Arrow -->
 	<div class="">
 		<a class="back-arrow text-decoration-none text-light m-2 p-2 fw-bold" href="/dashboard">
 			<i class="bi bi-arrow-left"></i>
 			Back</a>
 	</div>
+
+	<!-- Whole Trip Container -->
 	<div class="form-container container text-center w-50 border rounded p-5 m-5 mx-auto">
-		<h1 class="divider-heading mt-3">Your
+		<h1 class="divider-heading mt-1">Your
 			{{ trip.destination }}
 			Trip</h1>
 		<br>
 		<div>
-			<h3 class="">Add packing List</h3>
+			<h3 class="mt-3">Packing List</h3>
 			<a class="btn btn-light btn-orange fw-bold" href="/dashboard/trips/{{ id }}/packing_list">List creator</a>
 		</div>
-		<div class="mt-3">
-			<h3>Add your individual travel itinerary</h3>
+		<div class="mt-5">
+			<h3>Individual Travel Itinerary</h3>
 			<a class="btn btn-light btn-orange fw-bold" href="/dashboard/trips/{{ id }}/itinerary">Itinerary planner</a>
 		</div>
+
+		<!-- Packed Items -->
+		{% if packingList %}
+			<div class="mt-5">
+				<h5 class="mb-3">Your packed items</h5>
+				<div class="border rounded p-1">
+					{% for item in packingList %}
+						<div class="d-flex justify-content-between">
+							<div>
+								<span class="m-2">-
+									{{ item.item.name }}</span>
+									<!-- Delete Button -->
+								{# <a class="btn-remove btn btn-danger btn-sm me-auto" href="/dashboard/trips/{{id}}/packing_list/{{ item.id }}/remove">
+									<i class="icon-remove bi bi-trash"></i>
+								</a> #}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+
+		<!-- Planned Days -->
+		{% if itinerary %}
+		<h5 class="mt-5 mb-3">Your planned days</h5>
+			<div class="d-flex flex-wrap gap-2 mb-5">
+				{% set counter = 0 %}
+				{% for item in itinerary %}
+					<div class="border rounded p-2" style="width: 100%">
+						<div class="d-flex justify-content-between">
+							<strong>Day</strong>
+							<div>{{ item.day }}</div>
+						</div>
+						<div class="d-flex justify-content-between">
+							<strong>Activity</strong>
+							<div>{{ item.activity }}</div>
+						</div>
+						<div class="d-flex justify-content-between">
+							<strong>Restaurant</strong>
+							<div>{{ item.restaurant }}</div>
+						</div>
+						<div class="d-flex justify-content-between">
+							<strong>Accommodation</strong>
+							<div>{{ item.accommodation }}</div>
+						</div>
+						<!-- Delete Button -->
+						{# <div>
+							<a class="btn-remove btn btn-danger btn-sm me-auto" href="/dashboard/trips/{{id}}/itinerary/{{ counter }}/remove">
+								<i class="icon-remove bi bi-trash"></i>
+							</a>
+						</div> #}
+					</div>
+					{% set counter = counter + 1 %}
+				{% endfor %}
+			</div>
+		{% endif %}
+
+		<!-- Remove Trip Button -->
 		<p>
 			<a class="btn btn-danger btn-sm mt-5" href="/dashboard/trips/{{ id }}/remove">Remove Trip</a>
 		</p>
+
 	</div>
+
 {% endblock %}

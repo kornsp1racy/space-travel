@@ -3,6 +3,7 @@
 {% block title %}Create Diary Note{% endblock %}
 
 {% block body %}
+<!-- Style -->
 <style>
     body {
       background: var(--main-bg-color);
@@ -17,14 +18,16 @@
     }
 </style>
 
+  <!-- Back Arrow -->
   <div class="">
     <a class="back-arrow text-decoration-none text-light m-2 p-2 fw-bold" href="/dashboard">
       <i class="bi bi-arrow-left"></i>
       Back</a>
   </div>
 
+  <!-- Form Note/Journal -->
   <div class="form-container container text-center w-50 border rounded p-5 m-5 mx-auto">
-    <h1 class="divider-heading my-3">Your Journal Diary</h1>
+    <h1 class="divider-heading mt-1 mb-5">Your Journal Diary</h1>
   {{ form_start(form) }}
   <div class="row mb-3">
     {{ form_label(form.title, "Title", {'label_attr': {'class': 'col-sm-3 col-form-label'}}) }}

@@ -6,21 +6,11 @@
 {% block body %}
 {% if app.user %}
 
-	{# {% if app.user.roles[0] == "ROLE_ADMIN" %}
-							            <p><a href="/admin">Admin Dashboard</a></p>
-							        {% else %}
-							            <p><a href="/user">User Dashboard</a></p>
-							        {% endif %} #}
-
 	<p>
 		<a href="/dashboard">Dashboard</a>
 	</p>
-
-
 	<a href="/logout">Logout</a>
-
 	<div style="display: flex; flex-wrap: wrap; gap: 1em; margin-top: 2rem;">
-
 		{% for trip in trips %}
 			<div style="border: 2px solid black; width: 150px; text-align: center;">
 				<h3>{{ trip.name }}</h3>
@@ -32,6 +22,7 @@
 		{% endfor %}
 	</div>
 
+<!-- LANDING PAGE -->
 {% else %}
 	<body
 		class="landing-body" onload="document.body.style.opacity='1'">
@@ -51,8 +42,11 @@
 			<video class="video-container" muted autoplay loop>
 				<source src="{{asset('movies/AdobeStock_461074863.mov')}}" type="video/mp4">
 			</video>
-			<h1 class="landing-h1 w-25 text-center divider-heading" id="animateSlider">Welcome to <br>
-				Astro <br> Tours</h1>
+			<h1 class="landing-h1 w-25 text-center divider-heading" id="animateSlider">Welcome to
+				<br>
+				Astro
+				<br>
+				Tours</h1>
 			<!-- video switch -->
 			<button class="switch-btn">
 				<span>
@@ -66,12 +60,13 @@
 		</header>
 	</body>
 </header>
+
 <!-- Trips -->
 <div id="trips-section">
 	<h1 class="text-center divider line glow divider-heading">Offer</h1>
 	<p class="text-center w-50 mx-auto my-5">
 		Welcome to our space travel agency, where we make your wildest space travel dreams a reality. We offer a variety of exciting and unforgettable experiences, 
-				including suborbital flights, lunar excursions, and even interstellar voyages. Join us on the ultimate adventure and explore the final frontier with us.
+		including suborbital flights, lunar excursions, and even interstellar voyages. Join us on the ultimate adventure and explore the final frontier with us.
 	</p>
 	<div class="row justify-content-around my-5">
 		<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12 text-center" style="width: 18rem;">
@@ -116,7 +111,6 @@
 				<h3>Affordable</h3>
 				<p>Nice and exciting trips should be affordable for everyone.</p>
 			</div>
-
 			<div class="feature-box col-lg-4 col-12">
 				<i class="feature-icon bi bi-moon-stars-fill"></i>
 				<h3>Experience</h3>
@@ -131,7 +125,7 @@
 	<h1 class="text-center divider line glow divider-heading">Join next Trip</h1>
 	<p class="text-center w-50 mx-auto my-5">
 		Ready to blast off into space? Register now and join our exclusive list of space travelers. 
-				Experience the thrill of a lifetime and create unforgettable memories that are truly out of this world.</p>
+		Experience the thrill of a lifetime and create unforgettable memories that are truly out of this world.</p>
 	<div class="text-center mx-auto">
 		<a class="btn btn-light btn-lg btn-orange fw-bolder mt-3" href="/register">Register</a>
 	</div>
@@ -142,22 +136,24 @@
 	<h1 class="text-center divider line glow divider-heading">Clients' Experiences</h1>
 	<p class="text-center w-50 mx-auto my-5">
 		Our clients have described their space travel experiences as nothing short of life-changing. 
-				From the awe-inspiring views of the Earth from above, to the weightlessness and serenity of space, 
-				our travelers have been left speechless. They return home with a newfound appreciation for our planet and a sense of wonder that stays with them forever.</p>
+		From the awe-inspiring views of the Earth from above, to the weightlessness and serenity of space, 
+		our travelers have been left speechless. They return home with a newfound appreciation for our planet and a sense of wonder that stays with them forever.</p>
 	<div class="row justify-content-around">
 		<div class="card my-5 border" style="width: 30rem">
 			<img src="https://s.w-x.co/util/image/w/de-spacexdpa.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60" class="card-img-top" alt="..."/>
 			<div class="card-body">
 				<h5 class="card-title note-title">Best Trip ever</h5>
 				<p class="card-text">
-After months of training and preparation, I can hardly believe that I am finally here on the Moon! The journey was long and uncomfortable, but it was all worth it to see the Earth rise over the horizon of this desolate landscape.
-The first thing I noticed when I stepped out of the spacecraft was the silence. There is no sound here, no wind, no rustling of leaves, just an eerie stillness that is both peaceful and unnerving.
-We spent the day exploring the landing site and setting up our equipment. Walking on the Moon is an incredible experience - the low gravity makes every step feel like you're bouncing and floating at the same time. It's going to take some getting used to, but I think I'm going to like it here.
+					After months of training and preparation, I can hardly believe that I am finally here on the Moon! The journey was long and uncomfortable, but it was all worth it to see the Earth rise over the horizon of this desolate landscape.
+					The first thing I noticed when I stepped out of the spacecraft was the silence. There is no sound here, no wind, no rustling of leaves, just an eerie stillness that is both peaceful and unnerving.
+					We spent the day exploring the landing site and setting up our equipment. Walking on the Moon is an incredible experience - the low gravity makes every step feel like you're bouncing and floating at the same time. It's going to take some getting used to, but I think I'm going to like it here.
 				</p>
 			</div>
 			<div class="d-flex justify-content-end">
 				<a class="btn text-decoration-none my-2 text-black bg-light">44</a>
-				<a class="btn btn-secondary btn-orange m-2"><i class="bi bi-heart-fill"></i></a>
+				<a class="btn btn-secondary btn-orange m-2">
+					<i class="bi bi-heart-fill"></i>
+				</a>
 			</div>
 		</div>
 
@@ -166,13 +162,15 @@ We spent the day exploring the landing site and setting up our equipment. Walkin
 			<div class="card-body">
 				<h5 class="card-title note-title">Unbelievable experience</h5>
 				<p class="card-text">
-Today we conducted some scientific experiments and took some samples of the rocks and soil. It's incredible to think that these samples have been untouched for billions of years - they could hold clues to the origins of our solar system and the universe itself.
-We also had some time to just relax and take in the view. It's so peaceful here, without the noise and chaos of life on Earth. I feel like I could stay here forever, just gazing out at the landscape and pondering the mysteries of the universe.
+					Today we conducted some scientific experiments and took some samples of the rocks and soil. It's incredible to think that these samples have been untouched for billions of years - they could hold clues to the origins of our solar system and the universe itself.
+					We also had some time to just relax and take in the view. It's so peaceful here, without the noise and chaos of life on Earth. I feel like I could stay here forever, just gazing out at the landscape and pondering the mysteries of the universe.
 				</p>
 			</div>
 			<div class="d-flex justify-content-end">
 				<a class="btn text-decoration-none my-2 text-black bg-light">15</a>
-				<a class="btn btn-secondary btn-orange m-2"><i class="bi bi-heart-fill"></i></a>
+				<a class="btn btn-secondary btn-orange m-2">
+					<i class="bi bi-heart-fill"></i>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -200,19 +198,25 @@ We also had some time to just relax and take in the view. It's so peaceful here,
 		</form>
 	</div>
 </div>
+
 <!-- Footer -->
 <footer class="footer-landing text-center">
-	<a href="/team"><i class="bi bi-facebook p-4 text-light footer-icon"></i></a>
-	<a href="/team"><i class="bi bi-twitter p-4 text-light footer-icon"></i></a>
-	<a href="/team"><i class="bi bi-instagram p-4 text-light footer-icon"></i></a>
+	<a href="/team">
+		<i class="bi bi-facebook p-4 text-light footer-icon"></i>
+	</a>
+	<a href="/team">
+		<i class="bi bi-twitter p-4 text-light footer-icon"></i>
+	</a>
+	<a href="/team">
+		<i class="bi bi-instagram p-4 text-light footer-icon"></i>
+	</a>
 	<p class="p-5 copyright">© 2023 Copyright Astro Tours</p>
 </footer>
-		<button
-        type="button"
-        class="btn"
-        id="btn-back-to-top"
-        >
-				<i class="back-to-top-icon bi bi-arrow-up-circle-fill"></i>
-		</button>
+
+<!-- Back to top button -->
+<button type="button" class="btn" id="btn-back-to-top">
+	<i class="back-to-top-icon bi bi-arrow-up-circle-fill"></i>
+</button>
 </body>
-{% endif %}{% endblock %}
+{% endif %}
+{% endblock %}

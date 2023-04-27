@@ -3,6 +3,7 @@
 {% block title %}Registration{% endblock %}
 
 {% block body %}
+<!-- Style -->
 <style media="screen">
       *,
 *:before,
@@ -117,13 +118,17 @@ input:not(.checkbox){
     cursor: pointer;
 } 
 </style>
+
+    <!-- Background -->
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
+
+    <!-- Form Register -->
     {{ form_start(registrationForm) }}
         <h3 class="register-heading divider-heading">Register</h3>
-
+        
         {# {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'

@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	<!-- Style -->
 	<style>
 		body {
 			background: black;
@@ -17,12 +18,15 @@
             border-color: var(--accent-color-orange) !important;
         }
 	</style>
+
+	<!-- Back Button -->
 	<div class="">
 		<a class="back-arrow text-decoration-none text-light m-2 p-2 fw-bold" href="{{ path('app_dashboard') }}">
 			<i class="bi bi-arrow-left"></i>
 			Back</a>
 	</div>
-    {# Form #}
+
+	<!-- Personal Details Form -->
 	<div class="form-container container text-center m-5 p-5 border rounded bg-dark w-50 mx-auto">
 	<h1 class="divider-heading text-center my-3">Personal Details</h1>
 		{{ form_start(form) }}

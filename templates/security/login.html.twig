@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	<!-- Style -->
 	<style>
 		media="screen" *,
 		*:before,
@@ -86,6 +87,7 @@
 		::placeholder {
 			color: #e5e5e5;
 		}
+		{# Buttons #}
 		.login {
 			margin-top: 50px;
 			width: 100%;
@@ -130,14 +132,15 @@
 			color: #080710;
 			text-decoration: none;
 		}
-        {# Error #}
-        .container-error {
-            z-index: auto;
-        }
+    {# Error #}
+    .container-error {
+      z-index: auto;
+    }
 	</style>
 	{% if error %}
 		<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 	{% endif %}
+	<!-- Already loged in -->
 	{% if app.user %}
 		<div class="container-error container w-50 text-center">
 			<div class="alert alert-danger" role="alert">
@@ -150,11 +153,13 @@
 		</div>
 	{% endif %}
 
+	<!-- Background -->
 	<div class="background">
 		<div class="shape"></div>
 		<div class="shape"></div>
 	</div>
-	{# Form #}
+
+	<!-- Login Form -->
 	<form method="post">
 		<h3 class="login-heading divider-heading">Login
 		</h3>
@@ -162,14 +167,14 @@
 		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" placeholder="Email" autofocus>
 		<label for="inputPassword">Password</label>
 		<input type="password" name="password" id="inputPassword" autocomplete="current-password" placeholder="Password">
-
 		<button class="login" type="submit">Log In</button>
 		<button class="register mt-3">
 			<a href="/register">Register</a>
 		</button>
-
 		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 	</form>
+
+	<!-- Default Login -->
 	{# <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 							    <label for="inputEmail">Email</label>
 							    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
@@ -194,6 +199,5 @@
 	{# <button class="btn btn-lg btn-primary" type="submit">
 										        Sign in
 										    </button> #}
-
 
 {% endblock %}

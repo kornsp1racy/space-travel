@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	<!-- Style -->
 	<style>
 		body {
 			background: var(--main-bg-color);
@@ -27,12 +28,15 @@
 			bottom: 5px;
 		}
 	</style>
+
+	<!-- Back Arrow -->
 	<div class="">
 		<a class="back-arrow text-decoration-none text-light m-2 p-2 fw-bold" href="/dashboard/trips/{{id}}/">
 			<i class="bi bi-arrow-left"></i>
 			Back</a>
 	</div>
 
+	<!-- Form Itinerary Planner -->
 	<div class="form-container container text-center w-50 border rounded p-5 m-5 mx-auto">
 		<h1 class="divider-heading text-center mb-5">{{ count }}/{{ duration }}
 			days planned</h1>
@@ -58,11 +62,14 @@
 			{{ form_widget(form) }}
 			<input class="btn btn-light btn-orange fw-bold mb-4 mt-2" type="submit" value="Add">
 			{{ form_end(form) }}
+			<!-- all available days planned -->
 		{% else %}
 			<h3>You already planned all your days.</h3>
 		{% endif %}
 		<div class="d-flex flex-wrap gap-2">
 			{% set counter = 0 %}
+
+			<!-- Planned Days -->
 			{% for entry in entries %}
 				<div class="border rounded p-2" style="width: 100%">
 					<div class="d-flex justify-content-between">
@@ -91,6 +98,5 @@
 			{% endfor %}
 		</div>
 	</div>
-
 
 {% endblock %}
