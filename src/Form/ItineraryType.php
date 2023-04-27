@@ -16,7 +16,7 @@ class ItineraryType extends AbstractType
             ->add('day', ChoiceType::class, ['choices' => [
                 'Monday' => 'Monday',
                 'Tuesday' => 'Tuesday',
-                'Wednesday' => 'wednesday',
+                'Wednesday' => 'Wednesday',
                 'Thursday' => 'Thursday',
                 'Friday' => 'Friday',
                 'Saturday' => 'Saturday',

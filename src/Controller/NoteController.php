@@ -52,30 +52,54 @@ class NoteController extends AbstractController
 
     }
 
-    #[Route('/notes', name: 'app_notes')] 
-    public function showNotes(Security $security, EntityManagerInterface $em) {
+    // #[Route('/notes', name: 'app_notes')] 
+    // public function showNotes(Security $security, EntityManagerInterface $em) {
 
-        $user = $security->getUser();
-        $notes = $em->getRepository(Note::class)->findBy(['fk_user' => $user]);
+    //     $user = $security->getUser();
+    //     $notes = $em->getRepository(Note::class)->findBy(['fk_user' => $user]);
 
-        return $this->render('note/notes.html.twig', [
-            'notes' => $notes
-        ]);
-    }
+    //     return $this->render('note/notes.html.twig', [
+    //         'notes' => $notes
+    //     ]);
+    // }
 
-    #[Route('/allnotes', name: 'app_all_notes')] 
-    public function showAllNotes(Security $security, EntityManagerInterface $em) {
+    // #[Route('/allnotes', name: 'app_all_notes')] 
+    // public function showAllNotes(Security $security, EntityManagerInterface $em) {
 
-        $user = $security->getUser();
-        $notes = $em->getRepository(Note::class)->findAll();
+    //     $user = $security->getUser();
+    //     $notes = $em->getRepository(Note::class)->findAll();
 
-        return $this->render('note/all_notes.html.twig', [
-            'notes' => $notes,
-            'user' => $user
-        ]);
-    }
+    //     return $this->render('note/all_notes.html.twig', [
+    //         'notes' => $notes,
+    //         'user' => $user
+    //     ]);
+    // }
 
-    #[Route('/notes/{id}/remove', name: 'app_romove_note')] 
+    // #[Route('/notes/{id}/remove', name: 'app_romove_note')] 
+    // public function removeNote($id, Security $security, EntityManagerInterface $em) {
+
+    //     $user = $security->getUser();
+    //     $notes = $em->getRepository(Note::class)->findBy(['fk_user' => $user]);
+    //     $note = $notes[$id];
+
+    //     $em->remove($note);
+    //     $em->flush();
+
+    //     return $this->redirectToRoute('app_notes');
+    // }
+
+    // #[Route('/allnotes/{id}/remove', name: 'app_romove_note_from_all')] 
+    // public function removeNoteFromAll($id, Security $security, EntityManagerInterface $em) {
+
+    //     $note = $em->getRepository(Note::class)->find($id);
+
+    //     $em->remove($note);
+    //     $em->flush();
+
+    //     return $this->redirectToRoute('app_all_notes');
+    // }
+
+    #[Route('/dashboard/notes/{id}/remove', name: 'app_romove_note')] 
     public function removeNote($id, Security $security, EntityManagerInterface $em) {
 
         $user = $security->getUser();
@@ -85,17 +109,6 @@ class NoteController extends AbstractController
         $em->remove($note);
         $em->flush();
 
-        return $this->redirectToRoute('app_notes');
-    }
-
-    #[Route('/allnotes/{id}/remove', name: 'app_romove_note_from_all')] 
-    public function removeNoteFromAll($id, Security $security, EntityManagerInterface $em) {
-
-        $note = $em->getRepository(Note::class)->find($id);
-
-        $em->remove($note);
-        $em->flush();
-
-        return $this->redirectToRoute('app_all_notes');
+        return $this->redirectToRoute('app_dashboard');
     }
 }

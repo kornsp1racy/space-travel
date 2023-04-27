@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2023 at 01:39 AM
+-- Generation Time: Apr 27, 2023 at 09:50 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -147,8 +147,9 @@ CREATE TABLE `note` (
 --
 
 INSERT INTO `note` (`id`, `fk_user_id`, `date`, `title`, `content`, `image`, `likes`) VALUES
-(1, 1, '2023-04-12', 'Best trip ever', 'Day 1:\r\nAfter months of training and preparation, I can hardly believe that I am finally here on the Moon! The journey was long and uncomfortable, but it was all worth it to see the Earth rise over the horizon of this desolate landscape.\r\n\r\nThe first thing I noticed when I stepped out of the spacecraft was the silence. There is no sound here, no wind, no rustling of leaves, just an eerie stillness that is both peaceful and unnerving.\r\n\r\nWe spent the day exploring the landing site and setting up our equipment. Walking on the Moon is an incredible experience - the low gravity makes every step feel like you\'re bouncing and floating at the same time. It\'s going to take some getting used to, but I think I\'m going to like it here.', 'https://s.w-x.co/util/image/w/de-spacexdpa.jpg?crop=16:9&width=980&format=pjpg&auto=webp&quality=60', 25),
-(2, 2, '2023-06-05', 'Even better', 'Day 2:\r\nToday we ventured further away from the landing site and explored some of the craters and valleys nearby. The landscape is unlike anything I\'ve ever seen before - it\'s both barren and beautiful at the same time. The colors are muted, but there are subtle shades of grey, brown, and even purple in the rocks and dust.\r\n\r\nI couldn\'t help but feel a sense of awe as I looked up at the sky and saw the stars shining so brightly. There\'s no atmosphere to interfere with the view, so the stars are incredibly clear and vivid.\r\n\r\nWe also had some fun playing around in the low gravity - we tried jumping as high as we could and even had a few impromptu races. It\'s amazing how much you can do with just a little bit of effort here.', 'https://i.ds.at/iU_cPw/rs:fill:1600:0/plain/2022/04/13/mondimpakt.jpg', 44);
+(1, 3, '2023-06-04', 'Best trip ever', 'Day 1:\r\nAfter months of training and preparation, I can hardly believe that I am finally here on the Moon! The journey was long and uncomfortable, but it was all worth it to see the Earth rise over the horizon of this desolate landscape.\r\n\r\nThe first thing I noticed when I stepped out of the spacecraft was the silence. There is no sound here, no wind, no rustling of leaves, just an eerie stillness that is both peaceful and unnerving.\r\n\r\nWe spent the day exploring the landing site and setting up our equipment. Walking on the Moon is an incredible experience - the low gravity makes every step feel like you\'re bouncing and floating at the same time. It\'s going to take some getting used to, but I think I\'m going to like it here.', 'entry1.png', 80),
+(2, 3, '2023-06-05', 'Even better', 'Day 2:\r\nToday we ventured further away from the landing site and explored some of the craters and valleys nearby. The landscape is unlike anything I\'ve ever seen before - it\'s both barren and beautiful at the same time. The colors are muted, but there are subtle shades of grey, brown, and even purple in the rocks and dust.\r\n\r\nI couldn\'t help but feel a sense of awe as I looked up at the sky and saw the stars shining so brightly. There\'s no atmosphere to interfere with the view, so the stars are incredibly clear and vivid.\r\n\r\nWe also had some fun playing around in the low gravity - we tried jumping as high as we could and even had a few impromptu races. It\'s amazing how much you can do with just a little bit of effort here.', 'entry2.png', 99),
+(17, 3, '2023-06-06', 'No words', 'Day 3:\r\nToday we conducted some scientific experiments and took some samples of the rocks and soil. It\'s incredible to think that these samples have been untouched for billions of years - they could hold clues to the origins of our solar system and the universe itself.\r\nWe also had some time to just relax and take in the view. It\'s so peaceful here, without the noise and chaos of life on Earth. I feel like I could stay here forever, just gazing out at the landscape and pondering the mysteries of the universe.', 'entry3.png', 100);
 
 -- --------------------------------------------------------
 
@@ -296,8 +297,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `address`, `passport`, `phone`) VALUES
 (1, 'admin@email.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Adrian', 'Min', 'Straße 3, 10015 Berlin', 'pass.jpg', '1234556'),
 (2, 'mustermann@email.com', '[\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Max', 'Mustermann', 'Allee 15, 89005 München', 'pp.jpg', '2345435'),
-(3, 'some@dude.com', '[\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'the', 'dude!', 'wtf 123', 'pp.jpg', '111111111'),
-(4, 'admin@gmail.com', '[\"ROLE_ADMIN\",\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Ad', 'Min', 'dsfjjf', 'dsfds.jpg', '454535');
+(3, 'some@dude.com', '[\"ROLE_USER\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'the', 'dude!', 'wtf 123', 'pp.jpg', '22222222'),
+(4, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$x5KNKFT37Uj3EsANGK5MOezQBnzvZ8ijQaHvpTWfAldnziJk1w4ou', 'Ad', 'Min', 'dsfjjf', 'dsfds.jpg', '454535123');
 
 -- --------------------------------------------------------
 
@@ -428,7 +429,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT for table `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `packing_list`
@@ -452,7 +453,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_reward`

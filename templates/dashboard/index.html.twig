@@ -85,6 +85,7 @@
 			<div class="your-notes">
 				<h1 class="divider-heading divider glow line">Your Journal</h1>
 				<div class="row d-flex justify-content-around py-3">
+					{% set counter = 0 %}
 					{% for note in notes %}
 						<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12 text-center border rounded m-3" style="width: 35rem;">
 							<img class="card-img-top" src="uploads/{{ note.image }}" alt="Card image cap">
@@ -93,7 +94,9 @@
 								<h2 class="card-title note-title">{{ note.title }}</h2>
 								<p class="card-title p-1">{{ note.content }}</p>
 							</div>
+							<div><a class="text-danger" href="/dashboard/notes/{{ counter }}/remove">X</a></div>
 						</div>
+						{% set counter = counter + 1 %}
 					{% endfor %}
 				</div>
 			</div>
