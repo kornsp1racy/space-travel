@@ -126,7 +126,7 @@
 										<div class="card" style="background: #282d32;">
 											<div class="card-body text-center">
 												<p><img class=" img-fluid" src={{trip.image}} alt="card image"></p>
-												<h4 class="card-title">
+												<h4 class="card-title divider-heading">
 													{{trip.name}}</h4>
 												<p class="card-text">{{trip.characteristics}}</p>
 												<a href="#" class="btn btn-xl">
@@ -136,17 +136,17 @@
 										</div>
 									</div>
 									<div class="backside ">
-										<div class="card" style="background:  #282d32;">
-											<div class="card-body text-center ">
-												<h4 class="card-title">{{trip.destination}}</h4>
+										<div class="card" style="background: #282d32;">
+											<div class="card-body text-center">
+												<h4 class="card-title divider-heading">{{trip.destination}}</h4>
 												<p class="card-text">{{trip.characteristics}}</p>
-												<p>Duration in Days:
-													{{trip.duration}}</p>
-												<p>Your Travel Partner:
+												<p>Duration:
+													{{trip.duration}} Months</p>
+												<p>Travel Partner:
 													{{trip.host}}</p>
 												<p>Award:
 													{{trip.award}}</p>
-												<a href="/trips/{{ trip.id }}" class="btn btn-success text-light">Details</a>
+												<a href="/trips/{{ trip.id }}" class="btn btn-dark btn-orange fw-bold">Details</a>
 											</div>
 										</div>
 									</div>
