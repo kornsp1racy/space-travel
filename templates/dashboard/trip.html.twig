@@ -63,20 +63,19 @@
 							<div>
 								<span class="m-2">-
 									{{ item.item.name }}</span>
-									<!-- Delete Button -->
+								<!-- Delete Button -->
 								{# <a class="btn-remove btn btn-danger btn-sm me-auto" href="/dashboard/trips/{{id}}/packing_list/{{ item.id }}/remove">
-									<i class="icon-remove bi bi-trash"></i>
-								</a> #}
+																	<i class="icon-remove bi bi-trash"></i>
+																</a> #}
 							</div>
 						</div>
 					{% endfor %}
 				</div>
 			{% endif %}
-		</div>
 
 		<!-- Planned Days -->
 		{% if itinerary %}
-		<h5 class="mt-5 mb-3">Your planned days</h5>
+			<h5 class="mt-5 mb-3">Your planned days</h5>
 			<div class="d-flex flex-wrap gap-2 mb-5">
 				{% set counter = 0 %}
 				{% for item in itinerary %}
@@ -99,21 +98,16 @@
 						</div>
 						<!-- Delete Button -->
 						{# <div>
-							<a class="btn-remove btn btn-danger btn-sm me-auto" href="/dashboard/trips/{{id}}/itinerary/{{ counter }}/remove">
-								<i class="icon-remove bi bi-trash"></i>
-							</a>
-						</div> #}
+													<a class="btn-remove btn btn-danger btn-sm me-auto" href="/dashboard/trips/{{id}}/itinerary/{{ counter }}/remove">
+														<i class="icon-remove bi bi-trash"></i>
+													</a>
+												</div> #}
 					</div>
 					{% set counter = counter + 1 %}
 				{% endfor %}
-			</div>
+			
 		{% endif %}
-
 		<!-- Remove Trip Button -->
-		<p>
-			<a class="btn btn-danger btn-sm mt-5" href="/dashboard/trips/{{ id }}/remove">Remove Trip</a>
-		</p>
-
+			<a class="btn btn-danger btn-sm mt-5 mx-auto" href="/dashboard/trips/{{ id }}/remove">Remove Trip</a>
 	</div>
-
-{% endblock %}
+</div>{% endblock %}
